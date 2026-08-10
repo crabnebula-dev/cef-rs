@@ -54,7 +54,7 @@ render_always = true
 # An array of regex based postprocessors to modify the changelog.
 postprocessors = [
     # Replace the placeholder <REPO> with a URL.
-    { pattern = '<REPO>', replace = "https://github.com/tauri-apps/cef-rs" },
+    { pattern = '<REPO>', replace = "https://github.com/crabnebula-dev/cef-rs" },
     { pattern = '\[[\w\-]+-v([0-9.+]+)\]', replace = "[${1}]" },
 ]
 # render body even when there are no releases to process

@@ -20,7 +20,7 @@ authors = [
     "Bill Avery <wravery@gmail.com>",
     "csmoe <csmoe@msn.com>",
 ]
-repository = "https://github.com/tauri-apps/cef-rs"
+repository = "https://github.com/crabnebula-dev/cef-rs"
 
 [workspace.dependencies]
 cef = { path = "cef", default-features = false }
@@ -63,7 +63,11 @@ x11-dl = "2"
 
 [workspace.dependencies.windows-sys]
 version = "0.61"
-features = ["Win32_System_Environment", "Win32_System_LibraryLoader", "Win32_UI_WindowsAndMessaging"]
+features = [
+    "Win32_System_Environment",
+    "Win32_System_LibraryLoader",
+    "Win32_UI_WindowsAndMessaging",
+]
 
 [workspace.dependencies.windows]
 version = "0.62"

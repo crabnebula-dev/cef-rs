@@ -22,24 +22,15 @@ jobs:
       matrix:
         target:
           - x86_64-unknown-linux-gnu
-          - aarch64-unknown-linux-gnu
-          - arm-unknown-linux-gnueabi
     outputs:
       changed:
-        ${{ (steps.pack-changes.outputs.changed-x86_64-unknown-linux-gnu == 'true'
-        || steps.pack-changes.outputs.changed-aarch64-unknown-linux-gnu == 'true'
-        || steps.pack-changes.outputs.changed-arm-unknown-linux-gnueabi == 'true')
+        ${{ (steps.pack-changes.outputs.changed-x86_64-unknown-linux-gnu == 'true')
         && 'true' || 'false' }}
 
     steps:
       - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.branch }}
-
-      - name: Install Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -yq gcc-14-aarch64-linux-gnu gcc-14-arm-linux-gnueabi
 
       - name: Update Bindings
         run: |
@@ -115,13 +106,9 @@ jobs:
       matrix:
         target:
           - x86_64-pc-windows-msvc
-          - aarch64-pc-windows-msvc
-          - i686-pc-windows-msvc
     outputs:
       changed:
-        ${{ (steps.pack-changes.outputs.changed-x86_64-pc-windows-msvc == 'true'
-        || steps.pack-changes.outputs.changed-aarch64-pc-windows-msvc == 'true'
-        || steps.pack-changes.outputs.changed-i686-pc-windows-msvc == 'true')
+        ${{ (steps.pack-changes.outputs.changed-x86_64-pc-windows-msvc == 'true')
         && 'true' || 'false' }}
 
     steps:

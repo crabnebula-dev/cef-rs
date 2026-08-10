@@ -61,19 +61,11 @@ pub enum Error {
 
 pub type Result<T> = std::result::Result<T, Error>;
 
-pub const LINUX_TARGETS: &[&str] = &[
-    "x86_64-unknown-linux-gnu",
-    "arm-unknown-linux-gnueabi",
-    "aarch64-unknown-linux-gnu",
-];
+pub const LINUX_TARGETS: &[&str] = &["x86_64-unknown-linux-gnu"];
 
 pub const MACOS_TARGETS: &[&str] = &["aarch64-apple-darwin", "x86_64-apple-darwin"];
 
-pub const WINDOWS_TARGETS: &[&str] = &[
-    "x86_64-pc-windows-msvc",
-    "aarch64-pc-windows-msvc",
-    "i686-pc-windows-msvc",
-];
+pub const WINDOWS_TARGETS: &[&str] = &["x86_64-pc-windows-msvc"];
 
 pub fn default_version(version: &str) -> String {
     unwrap_cef_version(version).unwrap_or_else(|_| version.to_string())
@@ -128,7 +120,7 @@ where
     std::path::absolute(&location).unwrap_or(location)
 }
 
-pub const DEFAULT_CDN_URL: &str = "https://cef-builds.spotifycdn.com";
+pub const DEFAULT_CDN_URL: &str = "https://cef-builds.crabnebula.work";
 
 pub fn default_download_url() -> String {
     env::var("CEF_DOWNLOAD_URL").unwrap_or(DEFAULT_CDN_URL.to_owned())
@@ -179,11 +171,7 @@ impl CefIndex {
             "aarch64-apple-darwin" => Ok(&self.macosarm64),
             "x86_64-apple-darwin" => Ok(&self.macosx64),
             "x86_64-pc-windows-msvc" => Ok(&self.windows64),
-            "aarch64-pc-windows-msvc" => Ok(&self.windowsarm64),
-            "i686-pc-windows-msvc" => Ok(&self.windows32),
             "x86_64-unknown-linux-gnu" => Ok(&self.linux64),
-            "aarch64-unknown-linux-gnu" => Ok(&self.linuxarm64),
-            "arm-unknown-linux-gnueabi" => Ok(&self.linuxarm),
             v => Err(Error::UnsupportedTarget(v.to_string())),
         }
     }
@@ -608,25 +596,9 @@ impl TryFrom<&str> for OsAndArch {
                 os: "windows",
                 arch: "x86_64",
             }),
-            "aarch64-pc-windows-msvc" => Ok(OsAndArch {
-                os: "windows",
-                arch: "aarch64",
-            }),
-            "i686-pc-windows-msvc" => Ok(OsAndArch {
-                os: "windows",
-                arch: "x86",
-            }),
             "x86_64-unknown-linux-gnu" => Ok(OsAndArch {
                 os: "linux",
                 arch: "x86_64",
-            }),
-            "aarch64-unknown-linux-gnu" => Ok(OsAndArch {
-                os: "linux",
-                arch: "aarch64",
-            }),
-            "arm-unknown-linux-gnueabi" => Ok(OsAndArch {
-                os: "linux",
-                arch: "arm",
             }),
             v => Err(Error::UnsupportedTarget(v.to_string())),
         }
@@ -635,17 +607,9 @@ impl TryFrom<&str> for OsAndArch {
 
 #[cfg(all(target_os = "linux", target_arch = "x86_64"))]
 pub const DEFAULT_TARGET: &str = "x86_64-unknown-linux-gnu";
-#[cfg(all(target_os = "linux", target_arch = "aarch64"))]
-pub const DEFAULT_TARGET: &str = "aarch64-unknown-linux-gnu";
-#[cfg(all(target_os = "linux", target_arch = "arm"))]
-pub const DEFAULT_TARGET: &str = "arm-unknown-linux-gnueabi";
 
 #[cfg(all(target_os = "windows", target_arch = "x86_64"))]
 pub const DEFAULT_TARGET: &str = "x86_64-pc-windows-msvc";
-#[cfg(all(target_os = "windows", target_arch = "x86"))]
-pub const DEFAULT_TARGET: &str = "i686-pc-windows-msvc";
-#[cfg(all(target_os = "windows", target_arch = "aarch64"))]
-pub const DEFAULT_TARGET: &str = "aarch64-pc-windows-msvc";
 
 #[cfg(all(target_os = "macos", target_arch = "x86_64"))]
 pub const DEFAULT_TARGET: &str = "x86_64-apple-darwin";

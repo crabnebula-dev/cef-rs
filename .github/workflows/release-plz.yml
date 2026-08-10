@@ -13,7 +13,7 @@ jobs:
   # Release unpublished packages.
   release-plz-release:
     name: Release-plz release
-    if: ${{ github.repository_owner == 'tauri-apps' }}
+    if: ${{ github.repository_owner == 'crabnebula-dev' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -35,7 +35,7 @@ jobs:
   # Create a PR with the new versions and changelog, preparing the next release.
   release-plz-pr:
     name: Release-plz PR
-    if: ${{ github.repository_owner == 'tauri-apps' }}
+    if: ${{ github.repository_owner == 'crabnebula-dev' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
