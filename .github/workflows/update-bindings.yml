@@ -1,6 +1,13 @@
 name: Update bindings
 
 on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Target branch"
+        default: "dev"
+        required: true
+        type: string
   workflow_call:
     inputs:
       branch:
