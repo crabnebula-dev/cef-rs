@@ -527,6 +527,8 @@ pub struct Settings {
     pub chrome_app_icon_id: ::std::os::raw::c_int,
     pub disable_signal_handlers: ::std::os::raw::c_int,
     pub use_views_default_popup: ::std::os::raw::c_int,
+    pub keychain_service_name: CefString,
+    pub keychain_account_name: CefString,
 }
 impl Settings {
     fn get_raw(&self) -> _cef_settings_t {
@@ -567,6 +569,8 @@ impl From<_cef_settings_t> for Settings {
             chrome_app_icon_id: value.chrome_app_icon_id,
             disable_signal_handlers: value.disable_signal_handlers,
             use_views_default_popup: value.use_views_default_popup,
+            keychain_service_name: value.keychain_service_name.into(),
+            keychain_account_name: value.keychain_account_name.into(),
         }
     }
 }
@@ -604,6 +608,8 @@ impl From<Settings> for _cef_settings_t {
             chrome_app_icon_id: value.chrome_app_icon_id,
             disable_signal_handlers: value.disable_signal_handlers,
             use_views_default_popup: value.use_views_default_popup,
+            keychain_service_name: value.keychain_service_name.into(),
+            keychain_account_name: value.keychain_account_name.into(),
         }
     }
 }
@@ -11158,6 +11164,49 @@ pub trait ImplRequestContext: ImplPreferenceManager {
     fn add_setting_observer(&self, observer: Option<&mut SettingObserver>) -> Option<Registration>;
     #[doc = "See [`_cef_request_context_t::clear_http_cache`] for more documentation."]
     fn clear_http_cache(&self, callback: Option<&mut CompletionCallback>);
+    #[doc = "See [`_cef_request_context_t::load_unpacked_extension`] for more documentation."]
+    fn load_unpacked_extension(
+        &self,
+        root_directory: Option<&CefString>,
+        handler: Option<&mut ExtensionHandler>,
+    );
+    #[doc = "See [`_cef_request_context_t::install_unpacked_extension`] for more documentation."]
+    fn install_unpacked_extension(
+        &self,
+        root_directory: Option<&CefString>,
+        handler: Option<&mut ExtensionHandler>,
+    );
+    #[doc = "See [`_cef_request_context_t::install_extension`] for more documentation."]
+    fn install_extension(
+        &self,
+        crx_path: Option<&CefString>,
+        handler: Option<&mut ExtensionHandler>,
+    );
+    #[doc = "See [`_cef_request_context_t::set_extensions_handler`] for more documentation."]
+    fn set_extensions_handler(&self, handler: Option<&mut ExtensionHandler>);
+    #[doc = "See [`_cef_request_context_t::has_extension`] for more documentation."]
+    fn has_extension(&self, extension_id: Option<&CefString>) -> ::std::os::raw::c_int;
+    #[doc = "See [`_cef_request_context_t::get_extensions`] for more documentation."]
+    fn extensions(&self, extension_ids: Option<&mut CefStringList>) -> ::std::os::raw::c_int;
+    #[doc = "See [`_cef_request_context_t::get_extension`] for more documentation."]
+    fn extension(&self, extension_id: Option<&CefString>) -> Option<Extension>;
+    #[doc = "See [`_cef_request_context_t::set_extension_enabled`] for more documentation."]
+    fn set_extension_enabled(
+        &self,
+        extension_id: Option<&CefString>,
+        enable: ::std::os::raw::c_int,
+    );
+    #[doc = "See [`_cef_request_context_t::uninstall_extension`] for more documentation."]
+    fn uninstall_extension(&self, extension_id: Option<&CefString>);
+    #[doc = "See [`_cef_request_context_t::show_extension_popup`] for more documentation."]
+    fn show_extension_popup(
+        &self,
+        extension_id: Option<&CefString>,
+        source_browser: Option<&mut Browser>,
+        anchor_screen_rect: Option<&Rect>,
+    );
+    #[doc = "See [`_cef_request_context_t::close_extension_popup`] for more documentation."]
+    fn close_extension_popup(&self, extension_id: Option<&CefString>);
     fn get_raw(&self) -> *mut _cef_request_context_t {
         <Self as ImplPreferenceManager>::get_raw(self).cast()
     }
@@ -11642,6 +11691,213 @@ impl ImplRequestContext for RequestContext {
                     })
                     .unwrap_or(std::ptr::null_mut());
                 f(arg_self_, arg_callback);
+            }
+        }
+    }
+    fn load_unpacked_extension(
+        &self,
+        root_directory: Option<&CefString>,
+        handler: Option<&mut ExtensionHandler>,
+    ) {
+        unsafe {
+            if let Some(f) = self.0.load_unpacked_extension {
+                let (arg_root_directory, arg_handler) = (root_directory, handler);
+                let arg_self_ = self.into_raw();
+                let arg_root_directory = arg_root_directory
+                    .map(|arg| arg.into_raw())
+                    .unwrap_or(std::ptr::null());
+                let arg_handler = arg_handler
+                    .map(|arg| {
+                        arg.add_ref();
+                        ImplExtensionHandler::get_raw(arg)
+                    })
+                    .unwrap_or(std::ptr::null_mut());
+                f(arg_self_, arg_root_directory, arg_handler);
+            }
+        }
+    }
+    fn install_unpacked_extension(
+        &self,
+        root_directory: Option<&CefString>,
+        handler: Option<&mut ExtensionHandler>,
+    ) {
+        unsafe {
+            if let Some(f) = self.0.install_unpacked_extension {
+                let (arg_root_directory, arg_handler) = (root_directory, handler);
+                let arg_self_ = self.into_raw();
+                let arg_root_directory = arg_root_directory
+                    .map(|arg| arg.into_raw())
+                    .unwrap_or(std::ptr::null());
+                let arg_handler = arg_handler
+                    .map(|arg| {
+                        arg.add_ref();
+                        ImplExtensionHandler::get_raw(arg)
+                    })
+                    .unwrap_or(std::ptr::null_mut());
+                f(arg_self_, arg_root_directory, arg_handler);
+            }
+        }
+    }
+    fn install_extension(
+        &self,
+        crx_path: Option<&CefString>,
+        handler: Option<&mut ExtensionHandler>,
+    ) {
+        unsafe {
+            if let Some(f) = self.0.install_extension {
+                let (arg_crx_path, arg_handler) = (crx_path, handler);
+                let arg_self_ = self.into_raw();
+                let arg_crx_path = arg_crx_path
+                    .map(|arg| arg.into_raw())
+                    .unwrap_or(std::ptr::null());
+                let arg_handler = arg_handler
+                    .map(|arg| {
+                        arg.add_ref();
+                        ImplExtensionHandler::get_raw(arg)
+                    })
+                    .unwrap_or(std::ptr::null_mut());
+                f(arg_self_, arg_crx_path, arg_handler);
+            }
+        }
+    }
+    fn set_extensions_handler(&self, handler: Option<&mut ExtensionHandler>) {
+        unsafe {
+            if let Some(f) = self.0.set_extensions_handler {
+                let arg_handler = handler;
+                let arg_self_ = self.into_raw();
+                let arg_handler = arg_handler
+                    .map(|arg| {
+                        arg.add_ref();
+                        ImplExtensionHandler::get_raw(arg)
+                    })
+                    .unwrap_or(std::ptr::null_mut());
+                f(arg_self_, arg_handler);
+            }
+        }
+    }
+    fn has_extension(&self, extension_id: Option<&CefString>) -> ::std::os::raw::c_int {
+        unsafe {
+            self.0
+                .has_extension
+                .map(|f| {
+                    let arg_extension_id = extension_id;
+                    let arg_self_ = self.into_raw();
+                    let arg_extension_id = arg_extension_id
+                        .map(|arg| arg.into_raw())
+                        .unwrap_or(std::ptr::null());
+                    let result = f(arg_self_, arg_extension_id);
+                    result.wrap_result()
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn extensions(&self, extension_ids: Option<&mut CefStringList>) -> ::std::os::raw::c_int {
+        unsafe {
+            self.0
+                .get_extensions
+                .map(|f| {
+                    let arg_extension_ids = extension_ids;
+                    let arg_self_ = self.into_raw();
+                    let arg_extension_ids = arg_extension_ids
+                        .map(|arg| arg.into_raw())
+                        .unwrap_or(std::ptr::null_mut());
+                    let result = f(arg_self_, arg_extension_ids);
+                    result.wrap_result()
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn extension(&self, extension_id: Option<&CefString>) -> Option<Extension> {
+        unsafe {
+            self.0
+                .get_extension
+                .map(|f| {
+                    let arg_extension_id = extension_id;
+                    let arg_self_ = self.into_raw();
+                    let arg_extension_id = arg_extension_id
+                        .map(|arg| arg.into_raw())
+                        .unwrap_or(std::ptr::null());
+                    let result = f(arg_self_, arg_extension_id);
+                    if result.is_null() {
+                        None
+                    } else {
+                        Some(result.wrap_result())
+                    }
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn set_extension_enabled(
+        &self,
+        extension_id: Option<&CefString>,
+        enable: ::std::os::raw::c_int,
+    ) {
+        unsafe {
+            if let Some(f) = self.0.set_extension_enabled {
+                let (arg_extension_id, arg_enable) = (extension_id, enable);
+                let arg_self_ = self.into_raw();
+                let arg_extension_id = arg_extension_id
+                    .map(|arg| arg.into_raw())
+                    .unwrap_or(std::ptr::null());
+                f(arg_self_, arg_extension_id, arg_enable);
+            }
+        }
+    }
+    fn uninstall_extension(&self, extension_id: Option<&CefString>) {
+        unsafe {
+            if let Some(f) = self.0.uninstall_extension {
+                let arg_extension_id = extension_id;
+                let arg_self_ = self.into_raw();
+                let arg_extension_id = arg_extension_id
+                    .map(|arg| arg.into_raw())
+                    .unwrap_or(std::ptr::null());
+                f(arg_self_, arg_extension_id);
+            }
+        }
+    }
+    fn show_extension_popup(
+        &self,
+        extension_id: Option<&CefString>,
+        source_browser: Option<&mut Browser>,
+        anchor_screen_rect: Option<&Rect>,
+    ) {
+        unsafe {
+            if let Some(f) = self.0.show_extension_popup {
+                let (arg_extension_id, arg_source_browser, arg_anchor_screen_rect) =
+                    (extension_id, source_browser, anchor_screen_rect);
+                let arg_self_ = self.into_raw();
+                let arg_extension_id = arg_extension_id
+                    .map(|arg| arg.into_raw())
+                    .unwrap_or(std::ptr::null());
+                let arg_source_browser = arg_source_browser
+                    .map(|arg| {
+                        arg.add_ref();
+                        ImplBrowser::get_raw(arg)
+                    })
+                    .unwrap_or(std::ptr::null_mut());
+                let arg_anchor_screen_rect = arg_anchor_screen_rect.cloned().map(|arg| arg.into());
+                let arg_anchor_screen_rect = arg_anchor_screen_rect
+                    .as_ref()
+                    .map(std::ptr::from_ref)
+                    .unwrap_or(std::ptr::null());
+                f(
+                    arg_self_,
+                    arg_extension_id,
+                    arg_source_browser,
+                    arg_anchor_screen_rect,
+                );
+            }
+        }
+    }
+    fn close_extension_popup(&self, extension_id: Option<&CefString>) {
+        unsafe {
+            if let Some(f) = self.0.close_extension_popup {
+                let arg_extension_id = extension_id;
+                let arg_self_ = self.into_raw();
+                let arg_extension_id = arg_extension_id
+                    .map(|arg| arg.into_raw())
+                    .unwrap_or(std::ptr::null());
+                f(arg_self_, arg_extension_id);
             }
         }
     }
@@ -34210,6 +34466,456 @@ impl From<ComponentUpdater> for *mut _cef_component_updater_t {
     }
 }
 
+/// See [`_cef_extension_t`] for more documentation.
+#[derive(Clone)]
+pub struct Extension(RefGuard<_cef_extension_t>);
+pub trait ImplExtension: Clone + Sized + Rc {
+    #[doc = "See [`_cef_extension_t::get_identifier`] for more documentation."]
+    fn identifier(&self) -> CefStringUserfree;
+    #[doc = "See [`_cef_extension_t::get_path`] for more documentation."]
+    fn path(&self) -> CefStringUserfree;
+    #[doc = "See [`_cef_extension_t::get_name`] for more documentation."]
+    fn name(&self) -> CefStringUserfree;
+    #[doc = "See [`_cef_extension_t::get_version`] for more documentation."]
+    fn version(&self) -> CefStringUserfree;
+    #[doc = "See [`_cef_extension_t::get_manifest`] for more documentation."]
+    fn manifest(&self) -> Option<DictionaryValue>;
+    #[doc = "See [`_cef_extension_t::is_enabled`] for more documentation."]
+    fn is_enabled(&self) -> ::std::os::raw::c_int;
+    #[doc = "See [`_cef_extension_t::should_show_in_extensions_ui`] for more documentation."]
+    fn should_show_in_extensions_ui(&self) -> ::std::os::raw::c_int;
+    #[doc = "See [`_cef_extension_t::get_action_icon`] for more documentation."]
+    fn action_icon(&self, browser: Option<&mut Browser>) -> Option<Image>;
+    #[doc = "See [`_cef_extension_t::is_valid`] for more documentation."]
+    fn is_valid(&self) -> ::std::os::raw::c_int;
+    #[doc = "See [`_cef_extension_t::is_same`] for more documentation."]
+    fn is_same(&self, that: Option<&mut Extension>) -> ::std::os::raw::c_int;
+    #[doc = "See [`_cef_extension_t::get_request_context`] for more documentation."]
+    fn request_context(&self) -> Option<RequestContext>;
+    #[doc = "See [`_cef_extension_t::set_enabled`] for more documentation."]
+    fn set_enabled(&self, enable: ::std::os::raw::c_int);
+    #[doc = "See [`_cef_extension_t::uninstall`] for more documentation."]
+    fn uninstall(&self);
+    fn get_raw(&self) -> *mut _cef_extension_t;
+}
+impl ImplExtension for Extension {
+    fn identifier(&self) -> CefStringUserfree {
+        unsafe {
+            self.0
+                .get_identifier
+                .map(|f| {
+                    let arg_self_ = self.into_raw();
+                    let result = f(arg_self_);
+                    result.wrap_result()
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn path(&self) -> CefStringUserfree {
+        unsafe {
+            self.0
+                .get_path
+                .map(|f| {
+                    let arg_self_ = self.into_raw();
+                    let result = f(arg_self_);
+                    result.wrap_result()
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn name(&self) -> CefStringUserfree {
+        unsafe {
+            self.0
+                .get_name
+                .map(|f| {
+                    let arg_self_ = self.into_raw();
+                    let result = f(arg_self_);
+                    result.wrap_result()
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn version(&self) -> CefStringUserfree {
+        unsafe {
+            self.0
+                .get_version
+                .map(|f| {
+                    let arg_self_ = self.into_raw();
+                    let result = f(arg_self_);
+                    result.wrap_result()
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn manifest(&self) -> Option<DictionaryValue> {
+        unsafe {
+            self.0
+                .get_manifest
+                .map(|f| {
+                    let arg_self_ = self.into_raw();
+                    let result = f(arg_self_);
+                    if result.is_null() {
+                        None
+                    } else {
+                        Some(result.wrap_result())
+                    }
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn is_enabled(&self) -> ::std::os::raw::c_int {
+        unsafe {
+            self.0
+                .is_enabled
+                .map(|f| {
+                    let arg_self_ = self.into_raw();
+                    let result = f(arg_self_);
+                    result.wrap_result()
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn should_show_in_extensions_ui(&self) -> ::std::os::raw::c_int {
+        unsafe {
+            self.0
+                .should_show_in_extensions_ui
+                .map(|f| {
+                    let arg_self_ = self.into_raw();
+                    let result = f(arg_self_);
+                    result.wrap_result()
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn action_icon(&self, browser: Option<&mut Browser>) -> Option<Image> {
+        unsafe {
+            self.0
+                .get_action_icon
+                .map(|f| {
+                    let arg_browser = browser;
+                    let arg_self_ = self.into_raw();
+                    let arg_browser = arg_browser
+                        .map(|arg| {
+                            arg.add_ref();
+                            ImplBrowser::get_raw(arg)
+                        })
+                        .unwrap_or(std::ptr::null_mut());
+                    let result = f(arg_self_, arg_browser);
+                    if result.is_null() {
+                        None
+                    } else {
+                        Some(result.wrap_result())
+                    }
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn is_valid(&self) -> ::std::os::raw::c_int {
+        unsafe {
+            self.0
+                .is_valid
+                .map(|f| {
+                    let arg_self_ = self.into_raw();
+                    let result = f(arg_self_);
+                    result.wrap_result()
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn is_same(&self, that: Option<&mut Extension>) -> ::std::os::raw::c_int {
+        unsafe {
+            self.0
+                .is_same
+                .map(|f| {
+                    let arg_that = that;
+                    let arg_self_ = self.into_raw();
+                    let arg_that = arg_that
+                        .map(|arg| {
+                            arg.add_ref();
+                            ImplExtension::get_raw(arg)
+                        })
+                        .unwrap_or(std::ptr::null_mut());
+                    let result = f(arg_self_, arg_that);
+                    result.wrap_result()
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn request_context(&self) -> Option<RequestContext> {
+        unsafe {
+            self.0
+                .get_request_context
+                .map(|f| {
+                    let arg_self_ = self.into_raw();
+                    let result = f(arg_self_);
+                    if result.is_null() {
+                        None
+                    } else {
+                        Some(result.wrap_result())
+                    }
+                })
+                .unwrap_or_default()
+        }
+    }
+    fn set_enabled(&self, enable: ::std::os::raw::c_int) {
+        unsafe {
+            if let Some(f) = self.0.set_enabled {
+                let arg_enable = enable;
+                let arg_self_ = self.into_raw();
+                f(arg_self_, arg_enable);
+            }
+        }
+    }
+    fn uninstall(&self) {
+        unsafe {
+            if let Some(f) = self.0.uninstall {
+                let arg_self_ = self.into_raw();
+                f(arg_self_);
+            }
+        }
+    }
+    fn get_raw(&self) -> *mut _cef_extension_t {
+        unsafe { RefGuard::into_raw(&self.0) }
+    }
+}
+impl Rc for _cef_extension_t {
+    fn as_base(&self) -> &_cef_base_ref_counted_t {
+        self.base.as_base()
+    }
+}
+impl Rc for Extension {
+    fn as_base(&self) -> &_cef_base_ref_counted_t {
+        self.0.as_base()
+    }
+}
+impl ConvertParam<*mut _cef_extension_t> for &Extension {
+    fn into_raw(self) -> *mut _cef_extension_t {
+        ImplExtension::get_raw(self)
+    }
+}
+impl ConvertParam<*mut _cef_extension_t> for &mut Extension {
+    fn into_raw(self) -> *mut _cef_extension_t {
+        ImplExtension::get_raw(self)
+    }
+}
+impl ConvertReturnValue<Extension> for *mut _cef_extension_t {
+    fn wrap_result(self) -> Extension {
+        Extension(unsafe { RefGuard::from_raw(self) })
+    }
+}
+impl From<Extension> for *mut _cef_extension_t {
+    fn from(value: Extension) -> Self {
+        let object = ImplExtension::get_raw(&value);
+        std::mem::forget(value);
+        object
+    }
+}
+
+/// See [`_cef_extension_handler_t`] for more documentation.
+#[derive(Clone)]
+pub struct ExtensionHandler(RefGuard<_cef_extension_handler_t>);
+impl ExtensionHandler {
+    pub fn new<T>(interface: T) -> Self
+    where
+        T: WrapExtensionHandler,
+    {
+        unsafe {
+            let mut cef_object = std::mem::zeroed();
+            <T as ImplExtensionHandler>::init_methods(&mut cef_object);
+            let object = RcImpl::new(cef_object, interface);
+            <T as WrapExtensionHandler>::wrap_rc(&mut (*object).interface, object);
+            let object: *mut _cef_extension_handler_t = object.cast();
+            object.wrap_result()
+        }
+    }
+}
+pub trait WrapExtensionHandler: ImplExtensionHandler {
+    fn wrap_rc(&mut self, object: *mut RcImpl<_cef_extension_handler_t, Self>);
+}
+pub trait ImplExtensionHandler: Clone + Sized + Rc {
+    #[doc = "See [`_cef_extension_handler_t::on_extension_loaded`] for more documentation."]
+    fn on_extension_loaded(&self, extension: Option<&mut Extension>) {}
+    #[doc = "See [`_cef_extension_handler_t::on_extension_unloaded`] for more documentation."]
+    fn on_extension_unloaded(&self, extension: Option<&mut Extension>) {}
+    #[doc = "See [`_cef_extension_handler_t::on_extension_load_failed`] for more documentation."]
+    fn on_extension_load_failed(&self, error_code: Errorcode) {}
+    #[doc = "See [`_cef_extension_handler_t::on_extension_action_updated`] for more documentation."]
+    fn on_extension_action_updated(
+        &self,
+        extension: Option<&mut Extension>,
+        browser: Option<&mut Browser>,
+    ) {
+    }
+    fn init_methods(object: &mut _cef_extension_handler_t) {
+        impl_cef_extension_handler_t::init_methods::<Self, _cef_extension_handler_t>(object);
+    }
+    fn get_raw(&self) -> *mut _cef_extension_handler_t;
+}
+#[doc = "Implement the [`WrapExtensionHandler`] trait for the specified struct. You can declare more\nmembers for your struct, and in the `impl ExtensionHandler` block you can override default\nmethods implemented by the [`ImplExtensionHandler`] trait.\n\n# Example\n```rust\n# use cef::{*, rc::*};\n\nwrap_extension_handler! {\n    struct MyExtensionHandler {\n        payload: String,\n    }\n\n    impl ExtensionHandler {\n        // ...\n    }\n}\n\nfn make_my_struct() -> ExtensionHandler {\n    MyExtensionHandler::new(\"payload\".to_string())\n}\n```"]
+#[macro_export]
+macro_rules ! wrap_extension_handler { ($ vis : vis struct $ name : ident ; impl ExtensionHandler { $ ($ (# [$ attrs_name : meta]) * fn $ method_name : ident (& $ self : ident $ (, $ arg_name : ident : $ arg_type : ty) * $ (,) ?) $ (-> $ return_type : ty) ? { $ ($ body : tt) * }) * }) => { wrap_extension_handler ! { $ vis struct $ name { } impl ExtensionHandler { $ ($ (# [$ attrs_name]) * fn $ method_name (& $ self $ (, $ arg_name : $ arg_type) *) $ (-> $ return_type) ? { $ ($ body) * }) * } } } ; ($ vis : vis struct $ name : ident $ (< $ ($ generic_type : ident : $ first_generic_type_bound : tt $ (+ $ generic_type_bound : tt) *) , + $ (,) ? >) ? { $ ($ field_vis : vis $ field_name : ident : $ field_type : ty) , * $ (,) ? } impl ExtensionHandler { $ ($ (# [$ attrs_name : meta]) * fn $ method_name : ident (& $ self : ident $ (, $ arg_name : ident : $ arg_type : ty) * $ (,) ?) $ (-> $ return_type : ty) ? { $ ($ body : tt) * }) * }) => { $ vis struct $ name $ (< $ ($ generic_type ,) + >) ? $ (where $ ($ generic_type : $ first_generic_type_bound $ (+ $ generic_type_bound) * ,) +) ? { $ ($ field_vis $ field_name : $ field_type ,) * cef_object : * mut $ crate :: rc :: RcImpl < $ crate :: sys :: _cef_extension_handler_t , Self > } impl $ (< $ ($ generic_type ,) + >) ? $ name $ (< $ ($ generic_type ,) + >) ? $ (where $ ($ generic_type : $ first_generic_type_bound $ (+ $ generic_type_bound) * ,) +) ? { # [allow (clippy :: new_ret_no_self)] pub fn new ($ ($ field_name : $ field_type) , *) -> ExtensionHandler { ExtensionHandler :: new (Self { $ ($ field_name ,) * cef_object : std :: ptr :: null_mut () , }) } } impl $ (< $ ($ generic_type ,) + >) ? WrapExtensionHandler for $ name $ (< $ ($ generic_type ,) + >) ? $ (where $ ($ generic_type : $ first_generic_type_bound $ (+ $ generic_type_bound) * ,) +) ? { fn wrap_rc (& mut self , cef_object : * mut $ crate :: rc :: RcImpl < $ crate :: sys :: _cef_extension_handler_t , Self >) { self . cef_object = cef_object ; } } impl $ (< $ ($ generic_type ,) + >) ? Clone for $ name $ (< $ ($ generic_type ,) + >) ? $ (where $ ($ generic_type : $ first_generic_type_bound $ (+ $ generic_type_bound) * ,) +) ? { fn clone (& self) -> Self { unsafe { let rc_impl = & mut * self . cef_object ; rc_impl . interface . add_ref () ; } Self { $ ($ field_name : self . $ field_name . clone () ,) * cef_object : self . cef_object , } } } impl $ (< $ ($ generic_type ,) + >) ? $ crate :: rc :: Rc for $ name $ (< $ ($ generic_type ,) + >) ? $ (where $ ($ generic_type : $ first_generic_type_bound $ (+ $ generic_type_bound) * ,) +) ? { fn as_base (& self) -> & $ crate :: sys :: cef_base_ref_counted_t { unsafe { let base = & * self . cef_object ; std :: mem :: transmute (& base . cef_object) } } } impl $ (< $ ($ generic_type ,) + >) ? ImplExtensionHandler for $ name $ (< $ ($ generic_type ,) + >) ? $ (where $ ($ generic_type : $ first_generic_type_bound $ (+ $ generic_type_bound) * ,) +) ? { $ ($ (# [$ attrs_name]) * fn $ method_name (& $ self $ (, $ arg_name : $ arg_type) *) $ (-> $ return_type) ? { $ ($ body) * }) * fn get_raw (& self) -> * mut $ crate :: sys :: _cef_extension_handler_t { self . cef_object . cast () } } } ; }
+mod impl_cef_extension_handler_t {
+    use super::*;
+    pub fn init_methods<I: ImplExtensionHandler, R: Rc>(object: &mut _cef_extension_handler_t) {
+        object.on_extension_loaded = Some(on_extension_loaded::<I, R>);
+        object.on_extension_unloaded = Some(on_extension_unloaded::<I, R>);
+        object.on_extension_load_failed = Some(on_extension_load_failed::<I, R>);
+        object.on_extension_action_updated = Some(on_extension_action_updated::<I, R>);
+    }
+    extern "C" fn on_extension_loaded<I: ImplExtensionHandler, R: Rc>(
+        self_: *mut _cef_extension_handler_t,
+        extension: *mut _cef_extension_t,
+    ) {
+        let (arg_self_, arg_extension) = (self_, extension);
+        let arg_self_: &RcImpl<R, I> = RcImpl::get(arg_self_.cast());
+        let mut arg_extension = unsafe { arg_extension.as_mut() }
+            .map(|arg| Extension(unsafe { RefGuard::from_raw(arg) }));
+        let arg_extension = arg_extension.as_mut();
+        ImplExtensionHandler::on_extension_loaded(&arg_self_.interface, arg_extension)
+    }
+    extern "C" fn on_extension_unloaded<I: ImplExtensionHandler, R: Rc>(
+        self_: *mut _cef_extension_handler_t,
+        extension: *mut _cef_extension_t,
+    ) {
+        let (arg_self_, arg_extension) = (self_, extension);
+        let arg_self_: &RcImpl<R, I> = RcImpl::get(arg_self_.cast());
+        let mut arg_extension = unsafe { arg_extension.as_mut() }
+            .map(|arg| Extension(unsafe { RefGuard::from_raw(arg) }));
+        let arg_extension = arg_extension.as_mut();
+        ImplExtensionHandler::on_extension_unloaded(&arg_self_.interface, arg_extension)
+    }
+    extern "C" fn on_extension_load_failed<I: ImplExtensionHandler, R: Rc>(
+        self_: *mut _cef_extension_handler_t,
+        error_code: cef_errorcode_t,
+    ) {
+        let (arg_self_, arg_error_code) = (self_, error_code);
+        let arg_self_: &RcImpl<R, I> = RcImpl::get(arg_self_.cast());
+        let arg_error_code = arg_error_code.into_raw();
+        ImplExtensionHandler::on_extension_load_failed(&arg_self_.interface, arg_error_code)
+    }
+    extern "C" fn on_extension_action_updated<I: ImplExtensionHandler, R: Rc>(
+        self_: *mut _cef_extension_handler_t,
+        extension: *mut _cef_extension_t,
+        browser: *mut _cef_browser_t,
+    ) {
+        let (arg_self_, arg_extension, arg_browser) = (self_, extension, browser);
+        let arg_self_: &RcImpl<R, I> = RcImpl::get(arg_self_.cast());
+        let mut arg_extension = unsafe { arg_extension.as_mut() }
+            .map(|arg| Extension(unsafe { RefGuard::from_raw(arg) }));
+        let arg_extension = arg_extension.as_mut();
+        let mut arg_browser =
+            unsafe { arg_browser.as_mut() }.map(|arg| Browser(unsafe { RefGuard::from_raw(arg) }));
+        let arg_browser = arg_browser.as_mut();
+        ImplExtensionHandler::on_extension_action_updated(
+            &arg_self_.interface,
+            arg_extension,
+            arg_browser,
+        )
+    }
+}
+impl ImplExtensionHandler for ExtensionHandler {
+    fn on_extension_loaded(&self, extension: Option<&mut Extension>) {
+        unsafe {
+            if let Some(f) = self.0.on_extension_loaded {
+                let arg_extension = extension;
+                let arg_self_ = self.into_raw();
+                let arg_extension = arg_extension
+                    .map(|arg| {
+                        arg.add_ref();
+                        ImplExtension::get_raw(arg)
+                    })
+                    .unwrap_or(std::ptr::null_mut());
+                f(arg_self_, arg_extension);
+            }
+        }
+    }
+    fn on_extension_unloaded(&self, extension: Option<&mut Extension>) {
+        unsafe {
+            if let Some(f) = self.0.on_extension_unloaded {
+                let arg_extension = extension;
+                let arg_self_ = self.into_raw();
+                let arg_extension = arg_extension
+                    .map(|arg| {
+                        arg.add_ref();
+                        ImplExtension::get_raw(arg)
+                    })
+                    .unwrap_or(std::ptr::null_mut());
+                f(arg_self_, arg_extension);
+            }
+        }
+    }
+    fn on_extension_load_failed(&self, error_code: Errorcode) {
+        unsafe {
+            if let Some(f) = self.0.on_extension_load_failed {
+                let arg_error_code = error_code;
+                let arg_self_ = self.into_raw();
+                let arg_error_code = arg_error_code.into_raw();
+                f(arg_self_, arg_error_code);
+            }
+        }
+    }
+    fn on_extension_action_updated(
+        &self,
+        extension: Option<&mut Extension>,
+        browser: Option<&mut Browser>,
+    ) {
+        unsafe {
+            if let Some(f) = self.0.on_extension_action_updated {
+                let (arg_extension, arg_browser) = (extension, browser);
+                let arg_self_ = self.into_raw();
+                let arg_extension = arg_extension
+                    .map(|arg| {
+                        arg.add_ref();
+                        ImplExtension::get_raw(arg)
+                    })
+                    .unwrap_or(std::ptr::null_mut());
+                let arg_browser = arg_browser
+                    .map(|arg| {
+                        arg.add_ref();
+                        ImplBrowser::get_raw(arg)
+                    })
+                    .unwrap_or(std::ptr::null_mut());
+                f(arg_self_, arg_extension, arg_browser);
+            }
+        }
+    }
+    fn get_raw(&self) -> *mut _cef_extension_handler_t {
+        unsafe { RefGuard::into_raw(&self.0) }
+    }
+}
+impl Rc for _cef_extension_handler_t {
+    fn as_base(&self) -> &_cef_base_ref_counted_t {
+        self.base.as_base()
+    }
+}
+impl Rc for ExtensionHandler {
+    fn as_base(&self) -> &_cef_base_ref_counted_t {
+        self.0.as_base()
+    }
+}
+impl ConvertParam<*mut _cef_extension_handler_t> for &ExtensionHandler {
+    fn into_raw(self) -> *mut _cef_extension_handler_t {
+        ImplExtensionHandler::get_raw(self)
+    }
+}
+impl ConvertParam<*mut _cef_extension_handler_t> for &mut ExtensionHandler {
+    fn into_raw(self) -> *mut _cef_extension_handler_t {
+        ImplExtensionHandler::get_raw(self)
+    }
+}
+impl ConvertReturnValue<ExtensionHandler> for *mut _cef_extension_handler_t {
+    fn wrap_result(self) -> ExtensionHandler {
+        ExtensionHandler(unsafe { RefGuard::from_raw(self) })
+    }
+}
+impl From<ExtensionHandler> for *mut _cef_extension_handler_t {
+    fn from(value: ExtensionHandler) -> Self {
+        let object = ImplExtensionHandler::get_raw(&value);
+        std::mem::forget(value);
+        object
+    }
+}
+
 /// See [`_cef_resource_bundle_t`] for more documentation.
 #[derive(Clone)]
 pub struct ResourceBundle(RefGuard<_cef_resource_bundle_t>);
@@ -53484,15 +54190,6 @@ impl ColorId {
     #[doc = "See [`cef_color_id_t::CEF_ColorFeatureShowcaseStepperDot`] for more documentation."]
     pub const COLOR_FEATURE_SHOWCASE_STEPPER_DOT: Self =
         Self(cef_color_id_t::CEF_ColorFeatureShowcaseStepperDot);
-    #[doc = "See [`cef_color_id_t::CEF_ColorFeatureShowcaseThemePickerWrapperBackground`] for more documentation."]
-    pub const COLOR_FEATURE_SHOWCASE_THEME_PICKER_WRAPPER_BACKGROUND: Self =
-        Self(cef_color_id_t::CEF_ColorFeatureShowcaseThemePickerWrapperBackground);
-    #[doc = "See [`cef_color_id_t::CEF_ColorFeatureShowcaseThemePickerBackground`] for more documentation."]
-    pub const COLOR_FEATURE_SHOWCASE_THEME_PICKER_BACKGROUND: Self =
-        Self(cef_color_id_t::CEF_ColorFeatureShowcaseThemePickerBackground);
-    #[doc = "See [`cef_color_id_t::CEF_ColorFeatureShowcaseThemeColorBorder`] for more documentation."]
-    pub const COLOR_FEATURE_SHOWCASE_THEME_COLOR_BORDER: Self =
-        Self(cef_color_id_t::CEF_ColorFeatureShowcaseThemeColorBorder);
     #[doc = "See [`cef_color_id_t::CEF_ColorFeatureLensPromoBubbleBackground`] for more documentation."]
     pub const COLOR_FEATURE_LENS_PROMO_BUBBLE_BACKGROUND: Self =
         Self(cef_color_id_t::CEF_ColorFeatureLensPromoBubbleBackground);
