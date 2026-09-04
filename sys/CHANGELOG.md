@@ -7,6 +7,245 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [152.0.0+151.1.0-HEAD.3585](https://github.com/crabnebula-dev/cef-rs/compare/cef-dll-sys-v151.1.0+151.1.0-HEAD.3585...cef-dll-sys-v152.0.0+151.1.0-HEAD.3585) - 2026-09-04
+
+### Added
+
+- add cef_extension and cef_extension_handler includes to wrapper.h
+- allow configuring CEF_DOWNLOAD_URL for build script
+- improve CEF_PATH usage
+- add cef_task_manager_capi.h
+- add all C API headers to wrapper.h, except one for which bindings are still invalid
+- add --mirror-url cli args
+- Allow to download CEF binaries with custom base url set in env variable
+- check the archive.json version before using CEF_PATH cached
+- update to CEF 133.4.3 and add call to api_hash in cefsimple
+- expose archive index types and save archive.json to CEF dir
+- rename sys crate and always build/link cef_wrapper_lib
+- generate macOS bindings
+- generate Windows bindings
+- integrate upgrade.rs with update-bindings
+
+### Fixed
+
+- download CEF from custom URL
+- fix example
+- fix empty CEF_PATH
+- use build-time OUT_DIR variable in get_cef_dir
+- handle out-params ([#173](https://github.com/crabnebula-dev/cef-rs/pull/173))
+- add libraries directory to search path on macos
+- link as a dylib against cef_sandbox on macos
+- do not try to link cef_sandbox functions on Windows
+- keep linking with macos sandbox lib
+- #121
+- #122
+- build libcef_dll_wrapper with target arch
+- *(doc)* move crate doc comments into README files
+- framework path passed to cef_load_library should be null-terminated
+- cmake doesn't work well with canonical paths
+- missing symbol referenced in latest version on Windows
+- windows tests and examples with cef-dll-sys
+- don't compile OUT_DIR into target for get_cef_dir
+- unit tests and bundle_script work with cef-dll-sys on macos
+- get Windows targets building/running
+- fix demo
+- fix bindings
+- fix
+- fix path
+- fix wrapper
+- fix demo compile
+- fix download cef
+
+### Other
+
+- merge upstream dev ([#5](https://github.com/crabnebula-dev/cef-rs/pull/5))
+- update bindings ([#3](https://github.com/crabnebula-dev/cef-rs/pull/3))
+- get latest ([#449](https://github.com/crabnebula-dev/cef-rs/pull/449))
+- get latest ([#448](https://github.com/crabnebula-dev/cef-rs/pull/448))
+- get latest ([#446](https://github.com/crabnebula-dev/cef-rs/pull/446))
+- get latest ([#444](https://github.com/crabnebula-dev/cef-rs/pull/444))
+- *(release)* update CEF version to 150.0.14
+- get latest ([#440](https://github.com/crabnebula-dev/cef-rs/pull/440))
+- release v150.0.0+150.0.10
+- *(release)* update CEF version to 150.0.10 ([#438](https://github.com/crabnebula-dev/cef-rs/pull/438))
+- get latest ([#429](https://github.com/crabnebula-dev/cef-rs/pull/429))
+- get latest ([#427](https://github.com/crabnebula-dev/cef-rs/pull/427))
+- get latest ([#420](https://github.com/crabnebula-dev/cef-rs/pull/420))
+- get latest ([#418](https://github.com/crabnebula-dev/cef-rs/pull/418))
+- get latest ([#416](https://github.com/crabnebula-dev/cef-rs/pull/416))
+- get latest ([#415](https://github.com/crabnebula-dev/cef-rs/pull/415))
+- *(cef-dll-sys)* release v148.1.0+147.0.14 ([#411](https://github.com/crabnebula-dev/cef-rs/pull/411))
+- *(release)* update CEF version to 148.0.8
+- get latest ([#410](https://github.com/crabnebula-dev/cef-rs/pull/410))
+- release ([#405](https://github.com/crabnebula-dev/cef-rs/pull/405))
+- remove feature flag todos
+- Merge remote-tracking branch 'origin/fix/146-location-windows' into feat/copy-files
+- update bindings
+- release v147.0.0+147.0.9
+- update bindings
+- update bindings
+- Merge pull request #398 from tauri-apps/get-latest
+- update bindings
+- *(cef-dll-sys)* release v146.5.0+146.0.10
+- update bindings
+- release v146.4.1+146.0.9
+- release v146.4.0+146.0.9
+- Merge pull request #384 from tauri-apps/release-plz-2026-03-27T20-54-43Z
+- add missing rerun-if-changed instruction [skip ci]
+- fmt
+- cleanup
+- code review
+- fmt
+- update bindings
+- update bindings
+- update bindings
+- release
+- update bindings
+- Merge pull request #368 from tauri-apps/feat/cef_color_ids
+- update bindings
+- update bindings
+- update bindings
+- update bindings
+- update bindings
+- update bindings
+- update bindings
+- update bindings
+- *(cef-dll-sys)* release v144.2.0+144.0.11
+- update bindings
+- update bindings
+- update bindings
+- release v144.0.1+144.0.6
+- release v144.0.0+144.0.6
+- update bindings
+- update bindings
+- release v143.4.0+143.0.13
+- update bindings
+- update bindings
+- release v143.2.0+143.0.10
+- update bindings
+- update bindings
+- *(release)* update CEF version to 143.0.10
+- update bindings
+- *(release)* update CEF version to 143.0.9
+- update bindings
+- *(release)* update CEF version to 142.0.17
+- release v142.4.1+142.0.15
+- update bindings
+- *(release)* update CEF version to 142.0.15
+- update bindings
+- *(release)* update CEF version to 142.0.14
+- release v142.2.1+142.0.10
+- update bindings
+- update bindings
+- *(release)* update CEF version to 142.0.10
+- update bindings
+- *(release)* update CEF version to 142.0.8
+- update bindings
+- *(release)* update CEF version to 141.0.11
+- update bindings
+- *(release)* update CEF version to 141.0.10
+- update bindings
+- *(release)* update CEF version to 141.0.9
+- update bindings
+- *(release)* update CEF version to 141.0.8
+- update bindings
+- *(release)* update CEF version to 141.0.7
+- update bindings
+- *(release)* update CEF version to 141.0.6
+- update bindings
+- *(release)* update CEF version to 141.0.5
+- update bindings
+- *(release)* update CEF version to 140.1.14
+- update bindings
+- *(release)* update CEF version to 140.1.13
+- update bindings
+- *(release)* update CEF version to 139.0.40
+- release v139.7.2+139.0.38
+- update bindings
+- Fix missing cef_version.h header file
+- *(release)* update CEF version to 139.0.38
+- *(release)* update CEF version to 139.0.37
+- *(release)* update CEF version to 139.0.30
+- *(release)* update CEF version to 139.0.28
+- *(release)* update CEF version to 139.0.26
+- *(release)* update CEF version to 139.0.23
+- *(release)* update CEF version to 139.0.20
+- update bindings
+- *(release)* update CEF version to 139.0.17
+- *(release)* update CEF version to 138.0.36
+- *(release)* update CEF version to 138.0.34
+- release v138.7.1+138.0.33
+- Merge pull request #144 from csmoe/138-mac-sandbox
+- update bindings
+- *(release)* update CEF version to 138.0.33
+- release
+- *(doc)* regenerate CHANGELOG.md
+- release
+- seed CHANGELOG.md files
+- update bindings
+- update bindings
+- update bindings
+- Only build target libcef_dll_wrapper
+- update bindings
+- update bindings
+- update bindings
+- *(doc)* add top-level doc comments to published crates
+- update macos bindings
+- update windows bindings
+- update linux bindings
+- remove linux32 since CEF dropped support in 2022
+- reintroduce sandbox
+- add support for macos
+- turn upgrade.rs script into sub-module
+- Merge remote-tracking branch 'csmoe/fix' into dev
+- clean upgrade.rs
+- add windows sandbox
+- add sandbox
+- add wrapper
+- add nullcheck for bindings
+- workaround cargo env
+- update windows bindgen
+- update windows aarch64 bindgen
+- update linux bindgen
+- update x86_64 apple bindgen
+- update bindgen
+- update linux aarch64/x86_64
+- update windows x86
+- update windows aarch64
+- update windows x86_64
+- restrict ffi with trait
+- add ffirc marker
+- copy include
+- update macos bindings
+- update win arm64 bindings
+- add more delegate methods
+- update bindgen
+- group view into mod
+- debug command line
+- clean up demo
+- cargo clippy
+- update contributing
+- format
+- clean build.rs
+- add linux bindings
+- add windows bindingds
+- pre-codegen bindings
+- add ci
+- upgrade to 130.1.16
+- Add more manifest to Cargo.toml
+- Update crate to 117.2.5
+- Update bindings to 117.2.5
+- Update README
+- Add Window types
+- Add window and view capi
+- Update flatpak manifest
+- Add licenses
+- Add flatpak files
+- Add demo example
+- Add WindowInfo, BrowserSettings, Client
+- Add RcImpl
+- Init commit
+
 ## [151.8.1+151.3.24](https://github.com/tauri-apps/cef-rs/compare/cef-dll-sys-v151.8.0+151.3.24...cef-dll-sys-v151.8.1+151.3.24) - 2026-09-03
 
 ### Fixed
