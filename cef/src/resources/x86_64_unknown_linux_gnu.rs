@@ -36,9 +36,6 @@ pub const IDC_NEW_INCOGNITO_WINDOW: &CStr = c"IDC_NEW_INCOGNITO_WINDOW";
 /// `"IDC_CLOSE_WINDOW"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_CLOSE_WINDOW: &CStr = c"IDC_CLOSE_WINDOW";
 
-/// `"IDC_ALWAYS_ON_TOP"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_ALWAYS_ON_TOP: &CStr = c"IDC_ALWAYS_ON_TOP";
-
 /// `"IDC_NEW_TAB"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_NEW_TAB: &CStr = c"IDC_NEW_TAB";
 
@@ -102,17 +99,11 @@ pub const IDC_MOVE_TAB_PREVIOUS: &CStr = c"IDC_MOVE_TAB_PREVIOUS";
 /// `"IDC_SEARCH"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_SEARCH: &CStr = c"IDC_SEARCH";
 
-/// `"IDC_WINDOW_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_WINDOW_MENU: &CStr = c"IDC_WINDOW_MENU";
-
 /// `"IDC_MINIMIZE_WINDOW"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_MINIMIZE_WINDOW: &CStr = c"IDC_MINIMIZE_WINDOW";
 
 /// `"IDC_MAXIMIZE_WINDOW"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_MAXIMIZE_WINDOW: &CStr = c"IDC_MAXIMIZE_WINDOW";
-
-/// `"IDC_ALL_WINDOWS_FRONT"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_ALL_WINDOWS_FRONT: &CStr = c"IDC_ALL_WINDOWS_FRONT";
 
 /// `"IDC_NAME_WINDOW"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_NAME_WINDOW: &CStr = c"IDC_NAME_WINDOW";
@@ -150,9 +141,6 @@ pub const IDC_VERTICAL_TABS_SEND_FEEDBACK: &CStr = c"IDC_VERTICAL_TABS_SEND_FEED
 /// `"IDC_TOGGLE_VERTICAL_TABS_EXPAND_ON_HOVER"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_TOGGLE_VERTICAL_TABS_EXPAND_ON_HOVER: &CStr =
     c"IDC_TOGGLE_VERTICAL_TABS_EXPAND_ON_HOVER";
-
-/// `"IDC_TOGGLE_VERTICAL_TABS_COLLAPSE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_TOGGLE_VERTICAL_TABS_COLLAPSE: &CStr = c"IDC_TOGGLE_VERTICAL_TABS_COLLAPSE";
 
 /// `"IDC_COPY_URL"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_COPY_URL: &CStr = c"IDC_COPY_URL";
@@ -250,9 +238,6 @@ pub const IDC_WINDOW_PIN_TAB: &CStr = c"IDC_WINDOW_PIN_TAB";
 /// `"IDC_WINDOW_GROUP_TAB"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_WINDOW_GROUP_TAB: &CStr = c"IDC_WINDOW_GROUP_TAB";
 
-/// `"IDC_MIGRATE_LOCAL_CREDIT_CARD_FOR_PAGE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_MIGRATE_LOCAL_CREDIT_CARD_FOR_PAGE: &CStr = c"IDC_MIGRATE_LOCAL_CREDIT_CARD_FOR_PAGE";
-
 /// `"IDC_SEND_TAB_TO_SELF"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_SEND_TAB_TO_SELF: &CStr = c"IDC_SEND_TAB_TO_SELF";
 
@@ -277,14 +262,8 @@ pub const IDC_SAVE_AUTOFILL_ADDRESS: &CStr = c"IDC_SAVE_AUTOFILL_ADDRESS";
 /// `"IDC_OFFERS_AND_REWARDS_FOR_PAGE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_OFFERS_AND_REWARDS_FOR_PAGE: &CStr = c"IDC_OFFERS_AND_REWARDS_FOR_PAGE";
 
-/// `"IDC_WEBAUTHN"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_WEBAUTHN: &CStr = c"IDC_WEBAUTHN";
-
 /// `"IDC_SHARING_HUB"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_SHARING_HUB: &CStr = c"IDC_SHARING_HUB";
-
-/// `"IDC_SHARING_HUB_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_SHARING_HUB_MENU: &CStr = c"IDC_SHARING_HUB_MENU";
 
 /// `"IDC_FILLED_CARD_INFORMATION"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_FILLED_CARD_INFORMATION: &CStr = c"IDC_FILLED_CARD_INFORMATION";
@@ -300,12 +279,6 @@ pub const IDC_SAVE_IBAN_FOR_PAGE: &CStr = c"IDC_SAVE_IBAN_FOR_PAGE";
 
 /// `"IDC_AUTOFILL_MANDATORY_REAUTH"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_AUTOFILL_MANDATORY_REAUTH: &CStr = c"IDC_AUTOFILL_MANDATORY_REAUTH";
-
-/// `"IDC_PROFILE_MENU_IN_APP_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_PROFILE_MENU_IN_APP_MENU: &CStr = c"IDC_PROFILE_MENU_IN_APP_MENU";
-
-/// `"IDC_PASSWORDS_AND_AUTOFILL_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_PASSWORDS_AND_AUTOFILL_MENU: &CStr = c"IDC_PASSWORDS_AND_AUTOFILL_MENU";
 
 /// `"IDC_SHOW_PASSWORD_MANAGER"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_SHOW_PASSWORD_MANAGER: &CStr = c"IDC_SHOW_PASSWORD_MANAGER";
@@ -352,9 +325,6 @@ pub const IDC_COPY: &CStr = c"IDC_COPY";
 /// `"IDC_PASTE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_PASTE: &CStr = c"IDC_PASTE";
 
-/// `"IDC_EDIT_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_EDIT_MENU: &CStr = c"IDC_EDIT_MENU";
-
 /// `"IDC_FIND"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_FIND: &CStr = c"IDC_FIND";
 
@@ -366,15 +336,6 @@ pub const IDC_FIND_PREVIOUS: &CStr = c"IDC_FIND_PREVIOUS";
 
 /// `"IDC_CLOSE_FIND_OR_STOP"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_CLOSE_FIND_OR_STOP: &CStr = c"IDC_CLOSE_FIND_OR_STOP";
-
-/// `"IDC_FIND_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_FIND_MENU: &CStr = c"IDC_FIND_MENU";
-
-/// `"IDC_FIND_AND_EDIT_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_FIND_AND_EDIT_MENU: &CStr = c"IDC_FIND_AND_EDIT_MENU";
-
-/// `"IDC_SAVE_AND_SHARE_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_SAVE_AND_SHARE_MENU: &CStr = c"IDC_SAVE_AND_SHARE_MENU";
 
 /// `"IDC_CUSTOMIZE_CHROME"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_CUSTOMIZE_CHROME: &CStr = c"IDC_CUSTOMIZE_CHROME";
@@ -408,9 +369,6 @@ pub const IDC_SHOW_SIGNIN: &CStr = c"IDC_SHOW_SIGNIN";
 
 /// `"IDC_SHOW_SYNC_PASSPHRASE_DIALOG"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_SHOW_SYNC_PASSPHRASE_DIALOG: &CStr = c"IDC_SHOW_SYNC_PASSPHRASE_DIALOG";
-
-/// `"IDC_ZOOM_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_ZOOM_MENU: &CStr = c"IDC_ZOOM_MENU";
 
 /// `"IDC_ZOOM_PLUS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_ZOOM_PLUS: &CStr = c"IDC_ZOOM_PLUS";
@@ -454,9 +412,6 @@ pub const IDC_OPEN_FILE: &CStr = c"IDC_OPEN_FILE";
 
 /// `"IDC_CREATE_SHORTCUT"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_CREATE_SHORTCUT: &CStr = c"IDC_CREATE_SHORTCUT";
-
-/// `"IDC_DEVELOPER_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_DEVELOPER_MENU: &CStr = c"IDC_DEVELOPER_MENU";
 
 /// `"IDC_DEV_TOOLS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_DEV_TOOLS: &CStr = c"IDC_DEV_TOOLS";
@@ -527,12 +482,6 @@ pub const IDC_SHOW_HISTORY_CLUSTERS_SIDE_PANEL: &CStr = c"IDC_SHOW_HISTORY_CLUST
 /// `"IDC_PROFILING_ENABLED"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_PROFILING_ENABLED: &CStr = c"IDC_PROFILING_ENABLED";
 
-/// `"IDC_BOOKMARKS_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_BOOKMARKS_MENU: &CStr = c"IDC_BOOKMARKS_MENU";
-
-/// `"IDC_SAVED_TAB_GROUPS_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_SAVED_TAB_GROUPS_MENU: &CStr = c"IDC_SAVED_TAB_GROUPS_MENU";
-
 /// `"IDC_EXTENSION_ERRORS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_EXTENSION_ERRORS: &CStr = c"IDC_EXTENSION_ERRORS";
 
@@ -551,29 +500,17 @@ pub const IDC_TOGGLE_REQUEST_TABLET_SITE: &CStr = c"IDC_TOGGLE_REQUEST_TABLET_SI
 /// `"IDC_DEV_TOOLS_TOGGLE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_DEV_TOOLS_TOGGLE: &CStr = c"IDC_DEV_TOOLS_TOGGLE";
 
-/// `"IDC_RECENT_TABS_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_RECENT_TABS_MENU: &CStr = c"IDC_RECENT_TABS_MENU";
-
 /// `"IDC_RECENT_TABS_NO_DEVICE_TABS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_RECENT_TABS_NO_DEVICE_TABS: &CStr = c"IDC_RECENT_TABS_NO_DEVICE_TABS";
 
 /// `"IDC_DISTILL_PAGE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_DISTILL_PAGE: &CStr = c"IDC_DISTILL_PAGE";
 
-/// `"IDC_HELP_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_HELP_MENU: &CStr = c"IDC_HELP_MENU";
-
 /// `"IDC_TAKE_SCREENSHOT"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_TAKE_SCREENSHOT: &CStr = c"IDC_TAKE_SCREENSHOT";
 
-/// `"IDC_MORE_TOOLS_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_MORE_TOOLS_MENU: &CStr = c"IDC_MORE_TOOLS_MENU";
-
 /// `"IDC_TOGGLE_FULLSCREEN_TOOLBAR"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_TOGGLE_FULLSCREEN_TOOLBAR: &CStr = c"IDC_TOGGLE_FULLSCREEN_TOOLBAR";
-
-/// `"IDC_CUSTOMIZE_TOUCH_BAR"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_CUSTOMIZE_TOUCH_BAR: &CStr = c"IDC_CUSTOMIZE_TOUCH_BAR";
 
 /// `"IDC_SHOW_BETA_FORUM"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_SHOW_BETA_FORUM: &CStr = c"IDC_SHOW_BETA_FORUM";
@@ -605,9 +542,6 @@ pub const IDC_CHROME_WHATS_NEW: &CStr = c"IDC_CHROME_WHATS_NEW";
 /// `"IDC_PERFORMANCE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_PERFORMANCE: &CStr = c"IDC_PERFORMANCE";
 
-/// `"IDC_EXTENSIONS_SUBMENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_EXTENSIONS_SUBMENU: &CStr = c"IDC_EXTENSIONS_SUBMENU";
-
 /// `"IDC_EXTENSIONS_SUBMENU_MANAGE_EXTENSIONS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_EXTENSIONS_SUBMENU_MANAGE_EXTENSIONS: &CStr =
     c"IDC_EXTENSIONS_SUBMENU_MANAGE_EXTENSIONS";
@@ -615,9 +549,6 @@ pub const IDC_EXTENSIONS_SUBMENU_MANAGE_EXTENSIONS: &CStr =
 /// `"IDC_EXTENSIONS_SUBMENU_VISIT_CHROME_WEB_STORE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_EXTENSIONS_SUBMENU_VISIT_CHROME_WEB_STORE: &CStr =
     c"IDC_EXTENSIONS_SUBMENU_VISIT_CHROME_WEB_STORE";
-
-/// `"IDC_READING_LIST_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_READING_LIST_MENU: &CStr = c"IDC_READING_LIST_MENU";
 
 /// `"IDC_READING_LIST_MENU_ADD_TAB"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_READING_LIST_MENU_ADD_TAB: &CStr = c"IDC_READING_LIST_MENU_ADD_TAB";
@@ -727,9 +658,6 @@ pub const IDC_SPELLCHECK_SUGGESTION_3: &CStr = c"IDC_SPELLCHECK_SUGGESTION_3";
 /// `"IDC_SPELLCHECK_SUGGESTION_4"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_SPELLCHECK_SUGGESTION_4: &CStr = c"IDC_SPELLCHECK_SUGGESTION_4";
 
-/// `"IDC_SPELLCHECK_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_SPELLCHECK_MENU: &CStr = c"IDC_SPELLCHECK_MENU";
-
 /// `"IDC_SPELLCHECK_LANGUAGES_FIRST"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_SPELLCHECK_LANGUAGES_FIRST: &CStr = c"IDC_SPELLCHECK_LANGUAGES_FIRST";
 
@@ -748,9 +676,6 @@ pub const IDC_SPELLCHECK_MULTI_LINGUAL: &CStr = c"IDC_SPELLCHECK_MULTI_LINGUAL";
 /// `"IDC_SPELLCHECK_REMOVE_FROM_DICTIONARY"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_SPELLCHECK_REMOVE_FROM_DICTIONARY: &CStr = c"IDC_SPELLCHECK_REMOVE_FROM_DICTIONARY";
 
-/// `"IDC_WRITING_DIRECTION_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_WRITING_DIRECTION_MENU: &CStr = c"IDC_WRITING_DIRECTION_MENU";
-
 /// `"IDC_WRITING_DIRECTION_DEFAULT"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_WRITING_DIRECTION_DEFAULT: &CStr = c"IDC_WRITING_DIRECTION_DEFAULT";
 
@@ -766,29 +691,8 @@ pub const IDC_TRANSLATE_ORIGINAL_LANGUAGE_BASE: &CStr = c"IDC_TRANSLATE_ORIGINAL
 /// `"IDC_TRANSLATE_TARGET_LANGUAGE_BASE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_TRANSLATE_TARGET_LANGUAGE_BASE: &CStr = c"IDC_TRANSLATE_TARGET_LANGUAGE_BASE";
 
-/// `"IDC_VIEW_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_VIEW_MENU: &CStr = c"IDC_VIEW_MENU";
-
-/// `"IDC_FILE_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_FILE_MENU: &CStr = c"IDC_FILE_MENU";
-
-/// `"IDC_CHROME_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_CHROME_MENU: &CStr = c"IDC_CHROME_MENU";
-
 /// `"IDC_HIDE_APP"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_HIDE_APP: &CStr = c"IDC_HIDE_APP";
-
-/// `"IDC_HISTORY_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_HISTORY_MENU: &CStr = c"IDC_HISTORY_MENU";
-
-/// `"IDC_TAB_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_TAB_MENU: &CStr = c"IDC_TAB_MENU";
-
-/// `"IDC_PROFILE_MAIN_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_PROFILE_MAIN_MENU: &CStr = c"IDC_PROFILE_MAIN_MENU";
-
-/// `"IDC_INPUT_METHODS_MENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_INPUT_METHODS_MENU: &CStr = c"IDC_INPUT_METHODS_MENU";
 
 /// `"IDC_CONTENT_CONTEXT_CUSTOM_FIRST"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_CONTENT_CONTEXT_CUSTOM_FIRST: &CStr = c"IDC_CONTENT_CONTEXT_CUSTOM_FIRST";
@@ -1207,9 +1111,6 @@ pub const IDC_CONTENT_CONTEXT_SHARING_SHARED_CLIPBOARD_MULTIPLE_DEVICES: &CStr =
 /// `"IDC_CONTENT_CONTEXT_GENERATE_QR_CODE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_CONTENT_CONTEXT_GENERATE_QR_CODE: &CStr = c"IDC_CONTENT_CONTEXT_GENERATE_QR_CODE";
 
-/// `"IDC_CONTENT_CONTEXT_SHARING_SUBMENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_CONTENT_CONTEXT_SHARING_SUBMENU: &CStr = c"IDC_CONTENT_CONTEXT_SHARING_SUBMENU";
-
 /// `"IDC_CONTENT_CONTEXT_SEND_TAB_TO_SELF_DEVICE1"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_CONTENT_CONTEXT_SEND_TAB_TO_SELF_DEVICE1: &CStr =
     c"IDC_CONTENT_CONTEXT_SEND_TAB_TO_SELF_DEVICE1";
@@ -1450,9 +1351,6 @@ pub const IDC_OMNIBOX_CONTEXT_SET_MODEL_PRO_NO_GEN_UI: &CStr =
 /// `"IDC_OMNIBOX_CONTEXT_SHARED_TABS_SUBMENU"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
 pub const IDC_OMNIBOX_CONTEXT_SHARED_TABS_SUBMENU: &CStr =
     c"IDC_OMNIBOX_CONTEXT_SHARED_TABS_SUBMENU";
-
-/// `"IDC_OMNIBOX_CONTEXT_SMART_TAB_SHARING"`: Resource ID for use with [`cef_dll_sys::cef_id_for_command_id_name`].
-pub const IDC_OMNIBOX_CONTEXT_SMART_TAB_SHARING: &CStr = c"IDC_OMNIBOX_CONTEXT_SMART_TAB_SHARING";
 
 /// `"IDR_BROKENCANVAS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
 pub const IDR_BROKENCANVAS: &CStr = c"IDR_BROKENCANVAS";
@@ -1775,9 +1673,6 @@ pub const IDR_WEB_APP_INSTALL_ILLUSTRATION: &CStr = c"IDR_WEB_APP_INSTALL_ILLUST
 /// `"IDR_WEB_APP_INTERNALS_CROS_LAUNCHER"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
 pub const IDR_WEB_APP_INTERNALS_CROS_LAUNCHER: &CStr = c"IDR_WEB_APP_INTERNALS_CROS_LAUNCHER";
 
-/// `"IDR_INTRO_SOUND_ALL_SET_FLAC"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
-pub const IDR_INTRO_SOUND_ALL_SET_FLAC: &CStr = c"IDR_INTRO_SOUND_ALL_SET_FLAC";
-
 /// `"IDR_INTRO_SOUND_AMBIENT_FLAC"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
 pub const IDR_INTRO_SOUND_AMBIENT_FLAC: &CStr = c"IDR_INTRO_SOUND_AMBIENT_FLAC";
 
@@ -2027,10 +1922,6 @@ pub const IDR_TRANSLATE_JS: &CStr = c"IDR_TRANSLATE_JS";
 
 /// `"IDR_WEBAPP_ERROR_PAGE_HTML"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
 pub const IDR_WEBAPP_ERROR_PAGE_HTML: &CStr = c"IDR_WEBAPP_ERROR_PAGE_HTML";
-
-/// `"IDR_CONTEXTUAL_CUES_ENDORSEMENT_OPTIONS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
-pub const IDR_CONTEXTUAL_CUES_ENDORSEMENT_OPTIONS: &CStr =
-    c"IDR_CONTEXTUAL_CUES_ENDORSEMENT_OPTIONS";
 
 /// `"IDR_SUPERVISED_USER_BLOCK_INTERSTITIAL_V3_HTML"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
 pub const IDR_SUPERVISED_USER_BLOCK_INTERSTITIAL_V3_HTML: &CStr =
@@ -3973,10 +3864,6 @@ pub const IDR_CR_COMPONENTS_CUSTOMIZE_COLOR_SCHEME_MODE_SEGMENTED_BUTTON_OPTION_
 /// `"IDR_CR_COMPONENTS_CUSTOMIZE_COLOR_SCHEME_MODE_CUSTOMIZE_COLOR_SCHEME_MODE_MOJOM_WEBUI_JS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
 pub const IDR_CR_COMPONENTS_CUSTOMIZE_COLOR_SCHEME_MODE_CUSTOMIZE_COLOR_SCHEME_MODE_MOJOM_WEBUI_JS: &CStr = c"IDR_CR_COMPONENTS_CUSTOMIZE_COLOR_SCHEME_MODE_CUSTOMIZE_COLOR_SCHEME_MODE_MOJOM_WEBUI_JS";
 
-/// `"IDR_CR_COMPONENTS_HELP_BUBBLE_HELP_BUBBLE_ICONS_HTML_JS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
-pub const IDR_CR_COMPONENTS_HELP_BUBBLE_HELP_BUBBLE_ICONS_HTML_JS: &CStr =
-    c"IDR_CR_COMPONENTS_HELP_BUBBLE_HELP_BUBBLE_ICONS_HTML_JS";
-
 /// `"IDR_CR_COMPONENTS_HELP_BUBBLE_CUSTOM_HELP_BUBBLE_PROXY_JS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
 pub const IDR_CR_COMPONENTS_HELP_BUBBLE_CUSTOM_HELP_BUBBLE_PROXY_JS: &CStr =
     c"IDR_CR_COMPONENTS_HELP_BUBBLE_CUSTOM_HELP_BUBBLE_PROXY_JS";
@@ -4012,6 +3899,10 @@ pub const IDR_CR_COMPONENTS_HELP_BUBBLE_NEW_BADGE_JS: &CStr =
 /// `"IDR_CR_COMPONENTS_HELP_BUBBLE_PDF_HELP_BUBBLE_PROXY_JS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
 pub const IDR_CR_COMPONENTS_HELP_BUBBLE_PDF_HELP_BUBBLE_PROXY_JS: &CStr =
     c"IDR_CR_COMPONENTS_HELP_BUBBLE_PDF_HELP_BUBBLE_PROXY_JS";
+
+/// `"IDR_CR_COMPONENTS_HELP_BUBBLE_HELP_BUBBLE_ICONS_HTML_JS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
+pub const IDR_CR_COMPONENTS_HELP_BUBBLE_HELP_BUBBLE_ICONS_HTML_JS: &CStr =
+    c"IDR_CR_COMPONENTS_HELP_BUBBLE_HELP_BUBBLE_ICONS_HTML_JS";
 
 /// `"IDR_CR_COMPONENTS_HELP_BUBBLE_HELP_BUBBLE_CSS_JS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
 pub const IDR_CR_COMPONENTS_HELP_BUBBLE_HELP_BUBBLE_CSS_JS: &CStr =
@@ -4195,10 +4086,6 @@ pub const IDR_CR_COMPONENTS_HISTORY_FOREIGN_SESSIONS_MOJOM_WEBUI_JS: &CStr =
 /// `"IDR_CR_COMPONENTS_HISTORY_HISTORY_MOJOM_WEBUI_JS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
 pub const IDR_CR_COMPONENTS_HISTORY_HISTORY_MOJOM_WEBUI_JS: &CStr =
     c"IDR_CR_COMPONENTS_HISTORY_HISTORY_MOJOM_WEBUI_JS";
-
-/// `"IDR_CR_COMPONENTS_HISTORY_HISTORY_CROSS_DEVICE_SIGNIN_PROMO_MOJOM_WEBUI_JS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
-pub const IDR_CR_COMPONENTS_HISTORY_HISTORY_CROSS_DEVICE_SIGNIN_PROMO_MOJOM_WEBUI_JS: &CStr =
-    c"IDR_CR_COMPONENTS_HISTORY_HISTORY_CROSS_DEVICE_SIGNIN_PROMO_MOJOM_WEBUI_JS";
 
 /// `"IDR_CR_COMPONENTS_MANAGED_DIALOG_MANAGED_DIALOG_HTML_JS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_resource_name`].
 pub const IDR_CR_COMPONENTS_MANAGED_DIALOG_MANAGED_DIALOG_HTML_JS: &CStr =
@@ -6189,10 +6076,6 @@ pub const IDS_PDF_GLIC_SUMMARIZE_IPH_TEXT: &CStr = c"IDS_PDF_GLIC_SUMMARIZE_IPH_
 /// `"IDS_PDF_GLIC_SUMMARIZE_IPH_TEXT_NEW"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_PDF_GLIC_SUMMARIZE_IPH_TEXT_NEW: &CStr = c"IDS_PDF_GLIC_SUMMARIZE_IPH_TEXT_NEW";
 
-/// `"IDS_PDF_GLIC_SUMMARIZE_IPH_TEXT_NEW_SCREENREADER"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_PDF_GLIC_SUMMARIZE_IPH_TEXT_NEW_SCREENREADER: &CStr =
-    c"IDS_PDF_GLIC_SUMMARIZE_IPH_TEXT_NEW_SCREENREADER";
-
 /// `"IDS_DOWNLOAD_BUBBLE_SUBPAGE_SUMMARY_UNKNOWN_SOURCE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_DOWNLOAD_BUBBLE_SUBPAGE_SUMMARY_UNKNOWN_SOURCE: &CStr =
     c"IDS_DOWNLOAD_BUBBLE_SUBPAGE_SUMMARY_UNKNOWN_SOURCE";
@@ -7488,6 +7371,10 @@ pub const IDS_FEATURE_SHOWCASE_PASSWORD_MANAGER_TITLE: &CStr =
 pub const IDS_FEATURE_SHOWCASE_PASSWORD_MANAGER_SUBTITLE: &CStr =
     c"IDS_FEATURE_SHOWCASE_PASSWORD_MANAGER_SUBTITLE";
 
+/// `"IDS_FEATURE_SHOWCASE_PASSWORD_MANAGER_ILLUSTRATION_A11Y_LABEL"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
+pub const IDS_FEATURE_SHOWCASE_PASSWORD_MANAGER_ILLUSTRATION_A11Y_LABEL: &CStr =
+    c"IDS_FEATURE_SHOWCASE_PASSWORD_MANAGER_ILLUSTRATION_A11Y_LABEL";
+
 /// `"IDS_FEATURE_SHOWCASE_LENS_OVERLAY_TITLE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_FEATURE_SHOWCASE_LENS_OVERLAY_TITLE: &CStr =
     c"IDS_FEATURE_SHOWCASE_LENS_OVERLAY_TITLE";
@@ -7495,6 +7382,10 @@ pub const IDS_FEATURE_SHOWCASE_LENS_OVERLAY_TITLE: &CStr =
 /// `"IDS_FEATURE_SHOWCASE_LENS_OVERLAY_DISCLOSURE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_FEATURE_SHOWCASE_LENS_OVERLAY_DISCLOSURE: &CStr =
     c"IDS_FEATURE_SHOWCASE_LENS_OVERLAY_DISCLOSURE";
+
+/// `"IDS_FEATURE_SHOWCASE_LENS_OVERLAY_ILLUSTRATION_A11Y_LABEL"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
+pub const IDS_FEATURE_SHOWCASE_LENS_OVERLAY_ILLUSTRATION_A11Y_LABEL: &CStr =
+    c"IDS_FEATURE_SHOWCASE_LENS_OVERLAY_ILLUSTRATION_A11Y_LABEL";
 
 /// `"IDS_FEATURE_SHOWCASE_THEMES_TITLE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_FEATURE_SHOWCASE_THEMES_TITLE: &CStr = c"IDS_FEATURE_SHOWCASE_THEMES_TITLE";
@@ -7745,9 +7636,19 @@ pub const IDS_DICTATION_ONBOARDING_TITLE: &CStr = c"IDS_DICTATION_ONBOARDING_TIT
 pub const IDS_DICTATION_ONBOARDING_BULLET_MICROPHONE: &CStr =
     c"IDS_DICTATION_ONBOARDING_BULLET_MICROPHONE";
 
+/// `"IDS_DICTATION_ONBOARDING_BULLET_DATA_SHARING"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
+pub const IDS_DICTATION_ONBOARDING_BULLET_DATA_SHARING: &CStr =
+    c"IDS_DICTATION_ONBOARDING_BULLET_DATA_SHARING";
+
 /// `"IDS_DICTATION_ONBOARDING_BULLET_DISCLAIMER"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_DICTATION_ONBOARDING_BULLET_DISCLAIMER: &CStr =
     c"IDS_DICTATION_ONBOARDING_BULLET_DISCLAIMER";
+
+/// `"IDS_DICTATION_ONBOARDING_BUTTON_ACCEPT"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
+pub const IDS_DICTATION_ONBOARDING_BUTTON_ACCEPT: &CStr = c"IDS_DICTATION_ONBOARDING_BUTTON_ACCEPT";
+
+/// `"IDS_DICTATION_BUTTON_START"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
+pub const IDS_DICTATION_BUTTON_START: &CStr = c"IDS_DICTATION_BUTTON_START";
 
 /// `"IDS_IOS_DESKTOP_ESB_PROMO_BUBBLE_DESCRIPTION_REMINDER"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_IOS_DESKTOP_ESB_PROMO_BUBBLE_DESCRIPTION_REMINDER: &CStr =
@@ -28096,10 +27997,6 @@ pub const IDS_FEATURE_SHOWCASE_LENS_OVERLAY_NOT_NOW: &CStr =
 pub const IDS_FEATURE_SHOWCASE_LENS_OVERLAY_YES_IM_IN: &CStr =
     c"IDS_FEATURE_SHOWCASE_LENS_OVERLAY_YES_IM_IN";
 
-/// `"IDS_FEATURE_SHOWCASE_STEPPER_A11Y_LABEL"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_FEATURE_SHOWCASE_STEPPER_A11Y_LABEL: &CStr =
-    c"IDS_FEATURE_SHOWCASE_STEPPER_A11Y_LABEL";
-
 /// `"IDS_FEATURE_SHOWCASE_THEMES_SUBTITLE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_FEATURE_SHOWCASE_THEMES_SUBTITLE: &CStr = c"IDS_FEATURE_SHOWCASE_THEMES_SUBTITLE";
 
@@ -32774,14 +32671,6 @@ pub const IDS_SETTINGS_HISTORY_SEARCH_WITH_ANSWERS_SUBLABEL_ON: &CStr =
 /// `"IDS_SETTINGS_HISTORY_SEARCH_WITH_ANSWERS_SUBLABEL_OFF"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_SETTINGS_HISTORY_SEARCH_WITH_ANSWERS_SUBLABEL_OFF: &CStr =
     c"IDS_SETTINGS_HISTORY_SEARCH_WITH_ANSWERS_SUBLABEL_OFF";
-
-/// `"IDS_SETTINGS_GOOGLE_SEARCH_AI_MODE_WORKSPACE_LABEL"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_SETTINGS_GOOGLE_SEARCH_AI_MODE_WORKSPACE_LABEL: &CStr =
-    c"IDS_SETTINGS_GOOGLE_SEARCH_AI_MODE_WORKSPACE_LABEL";
-
-/// `"IDS_SETTINGS_GOOGLE_SEARCH_AI_MODE_WORKSPACE_SUBLABEL"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_SETTINGS_GOOGLE_SEARCH_AI_MODE_WORKSPACE_SUBLABEL: &CStr =
-    c"IDS_SETTINGS_GOOGLE_SEARCH_AI_MODE_WORKSPACE_SUBLABEL";
 
 /// `"IDS_SETTINGS_PAGE_ZOOM_LABEL"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_SETTINGS_PAGE_ZOOM_LABEL: &CStr = c"IDS_SETTINGS_PAGE_ZOOM_LABEL";
@@ -44542,12 +44431,6 @@ pub const IDS_NTP_ACTION_CHIP_CANVAS_HEADING: &CStr = c"IDS_NTP_ACTION_CHIP_CANV
 /// `"IDS_NTP_ACTION_CHIP_CANVAS_BODY"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_NTP_ACTION_CHIP_CANVAS_BODY: &CStr = c"IDS_NTP_ACTION_CHIP_CANVAS_BODY";
 
-/// `"IDS_NTP_ACTION_CHIP_STARTER_HEADING"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_NTP_ACTION_CHIP_STARTER_HEADING: &CStr = c"IDS_NTP_ACTION_CHIP_STARTER_HEADING";
-
-/// `"IDS_NTP_ACTION_CHIP_STARTER_BODY"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_NTP_ACTION_CHIP_STARTER_BODY: &CStr = c"IDS_NTP_ACTION_CHIP_STARTER_BODY";
-
 /// `"IDS_NTP_ACTION_CHIP_DISABLE_TEXT"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_NTP_ACTION_CHIP_DISABLE_TEXT: &CStr = c"IDS_NTP_ACTION_CHIP_DISABLE_TEXT";
 
@@ -46203,10 +46086,6 @@ pub const IDS_VERTICAL_TAB_RESIZE_ACCESSIBLE_ALERT: &CStr =
 
 /// `"IDS_VERTICAL_TAB_GROUP_MORE_OPTIONS"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_VERTICAL_TAB_GROUP_MORE_OPTIONS: &CStr = c"IDS_VERTICAL_TAB_GROUP_MORE_OPTIONS";
-
-/// `"IDS_VERTICAL_TABS_VIEW_MENU_TOGGLE_COLLAPSE"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_VERTICAL_TABS_VIEW_MENU_TOGGLE_COLLAPSE: &CStr =
-    c"IDS_VERTICAL_TABS_VIEW_MENU_TOGGLE_COLLAPSE";
 
 /// `"IDS_VIEW_PROJECTS_PANEL"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_VIEW_PROJECTS_PANEL: &CStr = c"IDS_VIEW_PROJECTS_PANEL";
@@ -52564,13 +52443,6 @@ pub const IDS_MULTISTEP_FILTER_CUE_SETTINGS: &CStr = c"IDS_MULTISTEP_FILTER_CUE_
 pub const IDS_MULTISTEP_FILTER_CUE_EXPANDABLE_CONTENT_HEADING: &CStr =
     c"IDS_MULTISTEP_FILTER_CUE_EXPANDABLE_CONTENT_HEADING";
 
-/// `"IDS_MULTISTEP_FILTER_IPH_BODY"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_MULTISTEP_FILTER_IPH_BODY: &CStr = c"IDS_MULTISTEP_FILTER_IPH_BODY";
-
-/// `"IDS_MULTISTEP_FILTER_IPH_BODY_SCREENREADER"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_MULTISTEP_FILTER_IPH_BODY_SCREENREADER: &CStr =
-    c"IDS_MULTISTEP_FILTER_IPH_BODY_SCREENREADER";
-
 /// `"IDS_LINK_COPIED_TOAST_BODY"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_LINK_COPIED_TOAST_BODY: &CStr = c"IDS_LINK_COPIED_TOAST_BODY";
 
@@ -52583,12 +52455,6 @@ pub const IDS_VIDEO_FRAME_COPIED_TOAST_BODY: &CStr = c"IDS_VIDEO_FRAME_COPIED_TO
 /// `"IDS_LINK_COPIED_TO_HIGHLIGHT_TOAST_BODY"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_LINK_COPIED_TO_HIGHLIGHT_TOAST_BODY: &CStr =
     c"IDS_LINK_COPIED_TO_HIGHLIGHT_TOAST_BODY";
-
-/// `"IDS_DICTATION_ERROR_TOAST"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_DICTATION_ERROR_TOAST: &CStr = c"IDS_DICTATION_ERROR_TOAST";
-
-/// `"IDS_DICTATION_STOPPED_TOAST"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_DICTATION_STOPPED_TOAST: &CStr = c"IDS_DICTATION_STOPPED_TOAST";
 
 /// `"IDS_READING_LIST_TOAST_BODY"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_READING_LIST_TOAST_BODY: &CStr = c"IDS_READING_LIST_TOAST_BODY";
@@ -52641,16 +52507,6 @@ pub const IDS_TAB_STRIP_SWITCH_DELAYED_TO_VERTICAL_TOAST_BODY: &CStr =
 /// `"IDS_TAB_STRIP_SWITCH_DELAYED_EXIT_FULLSCREEN_ACTION"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_TAB_STRIP_SWITCH_DELAYED_EXIT_FULLSCREEN_ACTION: &CStr =
     c"IDS_TAB_STRIP_SWITCH_DELAYED_EXIT_FULLSCREEN_ACTION";
-
-/// `"IDS_DICTATION_ONBOARDING_BULLET_DATA_SHARING"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_DICTATION_ONBOARDING_BULLET_DATA_SHARING: &CStr =
-    c"IDS_DICTATION_ONBOARDING_BULLET_DATA_SHARING";
-
-/// `"IDS_DICTATION_ONBOARDING_BUTTON_ACCEPT"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_DICTATION_ONBOARDING_BUTTON_ACCEPT: &CStr = c"IDS_DICTATION_ONBOARDING_BUTTON_ACCEPT";
-
-/// `"IDS_DICTATION_BUTTON_START"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
-pub const IDS_DICTATION_BUTTON_START: &CStr = c"IDS_DICTATION_BUTTON_START";
 
 /// `"IDS_PROTECTED_AUDIENCE_DEBUGGING_DISCLAIMER"`: Resource ID for use with [`cef_dll_sys::cef_id_for_pack_string_name`].
 pub const IDS_PROTECTED_AUDIENCE_DEBUGGING_DISCLAIMER: &CStr =
