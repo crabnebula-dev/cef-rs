@@ -1,9 +1,6 @@
 name: Update bindings
 
 on:
-  push:
-    branches:
-      - sync/upstream-dev-2026-09-04
   workflow_dispatch:
     inputs:
       branch:
@@ -24,9 +21,6 @@ on:
         value: ${{ (jobs.publish-pr.outputs.published == 'true')
           && 'true' || 'false' }}
 
-env:
-  TARGET_BRANCH: ${{ inputs.branch || github.ref_name }}
-
 jobs:
   update-linux:
     runs-on: ubuntu-latest
@@ -43,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ env.TARGET_BRANCH }}
+          ref: ${{ inputs.branch }}
 
       - name: Update Bindings
         run: |
@@ -86,7 +80,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ env.TARGET_BRANCH }}
+          ref: ${{ inputs.branch }}
 
       - name: Update Bindings
         run: |
@@ -127,7 +121,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ env.TARGET_BRANCH }}
+          ref: ${{ inputs.branch }}
 
       - name: Update Bindings
         run: |
@@ -213,7 +207,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ env.TARGET_BRANCH }}
+          ref: ${{ inputs.branch }}
 
       - name: Download Artifacts
         uses: actions/download-artifact@v8.0.1
@@ -222,8 +216,8 @@ jobs:
 
       - name: Update branch name
         run: |
-          echo "Target branch name: ${{ env.TARGET_BRANCH }}"
-          SOURCE_BRANCH=${{ env.TARGET_BRANCH == 'dev' && 'update-bindings' || env.TARGET_BRANCH }}
+          echo "Target branch name: ${{ inputs.branch }}"
+          SOURCE_BRANCH=${{ inputs.branch == 'dev' && 'update-bindings' || inputs.branch }}
           echo "Source branch name: ${SOURCE_BRANCH}"
           echo "SOURCE_BRANCH=${SOURCE_BRANCH}" >> $GITHUB_ENV
 
@@ -232,7 +226,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ${{ env.TARGET_BRANCH == 'dev' && 'git switch -c ${SOURCE_BRANCH}' || 'echo "Re-using ${SOURCE_BRANCH}"' }}
+          ${{ inputs.branch == 'dev' && 'git switch -c ${SOURCE_BRANCH}' || 'echo "Re-using ${SOURCE_BRANCH}"' }}
           RESET_REV=$(git rev-parse HEAD)
 
           echo "Extracting merge-changes.tar.gz"
