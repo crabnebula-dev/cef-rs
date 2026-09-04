@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [151.5.0+151.3.17](https://github.com/tauri-apps/cef-rs/compare/cef-v151.4.0+151.3.17...cef-v151.5.0+151.3.17) - 2026-08-15
+
+### Added
+
+- generate resource ID constants ([#452](https://github.com/tauri-apps/cef-rs/pull/452))
+
 ## [150.2.1+150.0.14](https://github.com/tauri-apps/cef-rs/compare/cef-v150.2.0+150.0.14...cef-v150.2.1+150.0.14) - 2026-07-21
 
 ### Other

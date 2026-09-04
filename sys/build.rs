@@ -120,11 +120,29 @@ fn main() -> anyhow::Result<()> {
     println!("cargo::metadata=CEF_DIR={cef_dir_str}");
     println!("cargo::rustc-link-search=native={cef_dir_str}");
 
+    // Compile the wrapper against an explicit API version instead of the
+    // experimental (unversioned) API that CEF selects by default, which its
+    // own headers call "not back/forward compatible with different CEF
+    // versions". It is the version the crate declares at run time through
+    // `cef_api_hash(CEF_API_VERSION_LAST)`, so the two now agree; without it
+    // the macOS loader in `libcef_dll_dylib.cc` also resolves experimental
+    // entry points, and loading any libcef but this exact build fails on the
+    // first one missing.
+    let api_version = cef_api_version_last(&cef_dir)?;
+    println!("cargo::metadata=CEF_API_VERSION={api_version}");
+
     let mut cef_dll_wrapper = cmake::Config::new(&cef_dir);
     cef_dll_wrapper
         .generator("Ninja")
         .profile("RelWithDebInfo")
-        .build_target("libcef_dll_wrapper");
+        .build_target("libcef_dll_wrapper")
+        // Seeds the list CEF's cmake appends its own defines to and applies
+        // to the target; CMAKE_CXX_FLAGS would not survive, cef_variables
+        // clears it for the Ninja generator on Windows.
+        .define(
+            "CEF_COMPILER_DEFINES",
+            format!("CEF_API_VERSION={api_version}"),
+        );
 
     let project_arch = match os_arch.arch {
         "aarch64" => "arm64",
@@ -200,6 +218,27 @@ fn main() -> anyhow::Result<()> {
     }
 
     Ok(())
+}
+
+/// `CEF_API_VERSION_LAST` from the distribution's generated
+/// `include/cef_api_versions.h`: the newest versioned (non-experimental) API
+/// it supports, written there as `#define CEF_API_VERSION_LAST
+/// CEF_API_VERSION_15101`.
+#[cfg(not(feature = "dox"))]
+fn cef_api_version_last(cef_dir: &std::path::Path) -> anyhow::Result<u32> {
+    let header = cef_dir.join("include").join("cef_api_versions.h");
+    let contents = std::fs::read_to_string(&header)?;
+
+    contents
+        .lines()
+        .find_map(|line| {
+            line.strip_prefix("#define CEF_API_VERSION_LAST ")?
+                .trim()
+                .strip_prefix("CEF_API_VERSION_")?
+                .parse()
+                .ok()
+        })
+        .ok_or_else(|| anyhow::anyhow!("no CEF_API_VERSION_LAST in {}", header.display()))
 }
 
 #[cfg(not(feature = "dox"))]
