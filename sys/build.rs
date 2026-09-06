@@ -13,6 +13,7 @@ fn main() -> anyhow::Result<()> {
 
     println!("cargo::rerun-if-env-changed=FLATPAK");
     println!("cargo::rerun-if-env-changed=CEF_PATH");
+    println!("cargo::rerun-if-env-changed=CEF_RS_LIBCEF_DLL_WRAPPER_PATH");
     let package_version = env::var("CARGO_PKG_VERSION")?;
     let cef_version = download_cef::default_version(&package_version);
 
@@ -168,35 +169,49 @@ fn main() -> anyhow::Result<()> {
             // On macOS it's more complicated so we'll leave it to tools like tauri-cli for now.
             copy_cef_runtime_files(&cef_dir, target_dir)?;
 
-            let sdk_libs = [
-                "comctl32.lib",
-                "delayimp.lib",
-                "mincore.lib",
-                "powrprof.lib",
-                "propsys.lib",
-                "runtimeobject.lib",
-                "setupapi.lib",
-                "shcore.lib",
-                "shell32.lib",
-                "shlwapi.lib",
-                "user32.lib",
-                "version.lib",
-                "wbemuuid.lib",
-                "winmm.lib",
-            ]
-            .join(" ");
+            // Cross-compilation hosts can reuse a wrapper built natively against
+            // the same CEF distribution and API version.
+            if let Some(wrapper_path) = env::var_os("CEF_RS_LIBCEF_DLL_WRAPPER_PATH") {
+                let wrapper_path = PathBuf::from(wrapper_path);
+                let library = wrapper_path.join("libcef_dll_wrapper.lib");
+                anyhow::ensure!(
+                    library.is_file(),
+                    "prebuilt CEF wrapper does not exist: {}",
+                    library.display()
+                );
+                println!("cargo::rerun-if-changed={}", library.display());
+                println!("cargo::rustc-link-search=native={}", wrapper_path.display());
+            } else {
+                let sdk_libs = [
+                    "comctl32.lib",
+                    "delayimp.lib",
+                    "mincore.lib",
+                    "powrprof.lib",
+                    "propsys.lib",
+                    "runtimeobject.lib",
+                    "setupapi.lib",
+                    "shcore.lib",
+                    "shell32.lib",
+                    "shlwapi.lib",
+                    "user32.lib",
+                    "version.lib",
+                    "wbemuuid.lib",
+                    "winmm.lib",
+                ]
+                .join(" ");
 
-            let build_dir = cef_dll_wrapper
-                .define("CMAKE_MSVC_RUNTIME_LIBRARY", "MultiThreaded")
-                .define("CMAKE_OBJECT_PATH_MAX", "500")
-                .define("CMAKE_STATIC_LINKER_FLAGS", &sdk_libs)
-                .define("PROJECT_ARCH", project_arch)
-                .define("USE_SANDBOX", sandbox)
-                .build()
-                .to_string_lossy()
-                .into_owned();
+                let build_dir = cef_dll_wrapper
+                    .define("CMAKE_MSVC_RUNTIME_LIBRARY", "MultiThreaded")
+                    .define("CMAKE_OBJECT_PATH_MAX", "500")
+                    .define("CMAKE_STATIC_LINKER_FLAGS", &sdk_libs)
+                    .define("PROJECT_ARCH", project_arch)
+                    .define("USE_SANDBOX", sandbox)
+                    .build()
+                    .to_string_lossy()
+                    .into_owned();
 
-            println!("cargo::rustc-link-search=native={build_dir}/build/libcef_dll_wrapper");
+                println!("cargo::rustc-link-search=native={build_dir}/build/libcef_dll_wrapper");
+            }
             println!("cargo::rustc-link-lib=static=libcef_dll_wrapper");
 
             println!("cargo::rustc-link-lib=dylib=libcef");
