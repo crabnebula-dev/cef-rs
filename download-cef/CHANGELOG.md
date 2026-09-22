@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.1](https://github.com/crabnebula-dev/cef-rs/compare/download-cef-v3.0.0...download-cef-v3.0.1) - 2026-09-22
+
+### Other
+
+- Merge remote-tracking branch 'origin/dev' into dev
+
 ## [3.0.0](https://github.com/tauri-apps/cef-rs/compare/download-cef-v2.3.2...download-cef-v3.0.0) - 2026-09-12
 
 ### Added
