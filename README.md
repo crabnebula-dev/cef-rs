@@ -11,9 +11,19 @@ Use CEF in Rust.
 
 ## Usage
 
+### Nix (on Linux)
+
+If you are using Nix on Linux with the `nixpkgs` channel configured, you can take advantage of the `cef-binary` package to share the CEF binaries across your system. Just set the `NIX_CEF_BINARY` environment variable before running any of these `cargo` commands.
+
+```sh
+export NIX_CEF_BINARY=1
+```
+
+You can still run `export-cef-dir` and set the `CEF_PATH` environment variable if you prefer, e.g., for build output caching, but it is not necessary. If you combine `NIX_CEF_BINARY` with `export-cef-dir`, even `export-cef-dir` will use Nix instead of directly downloading the CEF binaries.
+
 ### Install Shared CEF Binaries
 
-This step is optional, but it will make all other builds of the `cef` crate much faster. If you don't do this, the `cef-dll-sys` crate `build.rs` script will download and extract the same files under its `OUT_DIR` directory. You should repeat this step each time you upgrade to a new version of the `cef` crate.
+This step is optional, but it will make all other builds of the `cef` crate much faster (when not using `NIX_CEF_BINARY`). If you don't do this, the `cef-dll-sys` crate `build.rs` script will download and extract the same files under its `OUT_DIR` directory. You should repeat this step each time you upgrade to a new version of the `cef` crate.
 
 #### Linux or macOS:
 
@@ -105,6 +115,18 @@ However, the utility will emit an executable manifest file, and if the `sandbox`
 cargo run --bin bundle-cef-app -- cefsimple -o ./target/bundle
 ./target/bundle/cefsimple.exe
 ```
+
+### Cross-compiling to Windows
+
+The `cef-dll-sys` crate can be cross-compiled to `x86_64-pc-windows-msvc` from Linux with [cargo-xwin](https://github.com/rust-cross/cargo-xwin), which downloads the Windows SDK and sets up a `clang-cl` toolchain for both Rust and CMake. Install `clang`, `lld`, `llvm` and `ninja` from your package manager (the MSVC STL headers require Clang 19 or newer; on Ubuntu 24.04 use [apt.llvm.org](https://apt.llvm.org/)), then:
+
+```sh
+rustup target add x86_64-pc-windows-msvc
+cargo install cargo-xwin
+cargo xwin build --target x86_64-pc-windows-msvc
+```
+
+The `libcef_dll_wrapper` static library is built with `clang-cl` and the CEF runtime files are copied next to the output binaries, exactly like a native Windows build. The `CEF_PATH` environment variable works the same way as well: the Windows CEF binaries are downloaded into their own `cef_windows_x86_64` directory next to the host ones.
 
 ## Contributing
 

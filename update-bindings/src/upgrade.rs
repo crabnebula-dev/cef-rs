@@ -1,7 +1,10 @@
 use crate::dirs;
+use bindgen::callbacks::{DeriveInfo, ParseCallbacks, TypeKind};
 use std::{
+    collections::BTreeSet,
     path::{Path, PathBuf},
     process::Command,
+    sync::{Arc, Mutex},
 };
 
 const TARGETS: &[&str] = &[
@@ -13,6 +16,17 @@ const TARGETS: &[&str] = &[
     // linux
     "x86_64-unknown-linux-gnu",
 ];
+
+// Opaque C handle structs that bindgen 0.73.2 otherwise emits without
+// `Copy, Clone`, but wrapper code passes by value when converting borrowed FFI
+// parameters. Add entries only for zero-sized opaque handle types.
+const OPAQUE_STRING_COPY_HANDLES: &[&str] = &[
+    "_cef_string_list_t",
+    "_cef_string_map_t",
+    "_cef_string_multimap_t",
+];
+
+const OPAQUE_X11_COPY_HANDLES: &[&str] = &["_XEvent", "_XDisplay"];
 
 pub fn download(url: &str, target: &str, version: &str) -> PathBuf {
     assert!(TARGETS.contains(&target), "unsupported target {target}");
@@ -45,6 +59,8 @@ fn bindgen(target: &str, cef_path: &Path) -> crate::Result<()> {
     sys_bindings.push(format!("{}.rs", target.replace('-', "_")));
     wrapper.push("wrapper.h");
 
+    let opaque_copy_handles = opaque_copy_handles(target);
+    let matched_opaque_copy_handles = Arc::new(Mutex::new(BTreeSet::new()));
     let mut bindings = bindgen::Builder::default()
         .header(wrapper.display().to_string())
         .default_enum_style(bindgen::EnumVariation::Rust {
@@ -60,6 +76,10 @@ fn bindgen(target: &str, cef_path: &Path) -> crate::Result<()> {
         .bitfield_enum(".*_mask_t")
         .bitfield_enum(".*_flags_t")
         .bitfield_enum("cef_v8_propertyattribute_t")
+        .parse_callbacks(Box::new(OpaqueHandleDerives {
+            handles: opaque_copy_handles.clone(),
+            matched: Arc::clone(&matched_opaque_copy_handles),
+        }))
         .clang_args([
             format!("-I{}", cef_path.display()),
             format!("--target={target}"),
@@ -81,9 +101,56 @@ fn bindgen(target: &str, cef_path: &Path) -> crate::Result<()> {
     }
 
     let bindings = bindings.generate()?;
+    warn_unmatched_opaque_copy_handles(target, &opaque_copy_handles, &matched_opaque_copy_handles);
 
     bindings.write_to_file(&sys_bindings)?;
     Ok(())
+}
+
+fn opaque_copy_handles(target: &str) -> BTreeSet<&'static str> {
+    let mut handles: BTreeSet<_> = OPAQUE_STRING_COPY_HANDLES.iter().copied().collect();
+    if target.contains("-linux-") {
+        handles.extend(OPAQUE_X11_COPY_HANDLES.iter().copied());
+    }
+    handles
+}
+
+fn warn_unmatched_opaque_copy_handles(
+    target: &str,
+    handles: &BTreeSet<&'static str>,
+    matched: &Arc<Mutex<BTreeSet<&'static str>>>,
+) {
+    let matched = matched.lock().expect("opaque copy handle matches poisoned");
+    for handle in handles {
+        if !matched.contains(handle) {
+            eprintln!("warning: bindgen did not emit opaque handle {handle} for {target}; Copy/Clone derives were not added");
+        }
+    }
+}
+
+#[derive(Debug)]
+struct OpaqueHandleDerives {
+    handles: BTreeSet<&'static str>,
+    matched: Arc<Mutex<BTreeSet<&'static str>>>,
+}
+
+impl ParseCallbacks for OpaqueHandleDerives {
+    fn add_derives(&self, info: &DeriveInfo<'_>) -> Vec<String> {
+        if info.kind != TypeKind::Struct {
+            return Vec::new();
+        }
+
+        if let Some(handle) = self.handles.get(info.name).copied() {
+            self.matched
+                .lock()
+                .expect("opaque copy handle matches poisoned")
+                .insert(handle);
+            // Bindgen de-duplicates derives, so returning Copy/Clone here is safe even when bindgen already derives them.
+            vec!["Copy".into(), "Clone".into()]
+        } else {
+            Vec::new()
+        }
+    }
 }
 
 fn target_to_os_arch(target: &str) -> (&str, &str) {
