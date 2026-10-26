@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [152.0.0+151.1.0-HEAD.3585](https://github.com/crabnebula-dev/cef-rs/compare/cef-v151.1.0+151.1.0-HEAD.3585...cef-v152.0.0+151.1.0-HEAD.3585) - 2026-10-26
+
+### Other
+
+- Merge remote-tracking branch 'upstream/dev' into dev
+- Merge remote-tracking branch 'origin/dev' into dev
+- merge upstream dev ([#5](https://github.com/crabnebula-dev/cef-rs/pull/5))
+- update bindings ([#3](https://github.com/crabnebula-dev/cef-rs/pull/3))
+
 ### Fixed
 
 - fix(osr): copy shared textures before accelerated paint callbacks return
